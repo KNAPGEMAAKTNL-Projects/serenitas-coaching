@@ -1,7 +1,57 @@
 ---
-// Veelgestelde vragen — FAQ
-// CONTENT/faq.md: 10 Q&As
+/**
+ * Veelgestelde vragen — FAQ with native <details>/<summary>
+ * CONTENT/faq.md: 10 Q&As + CTA
+ * BUILD-PLAN.md: native HTML accordion, zero JS
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const faqs = [
+  {
+    q: 'Wat kost coaching bij Serenitas?',
+    a: 'Het eerste kennismakingsgesprek is altijd vrijblijvend en kosteloos. Tarieven voor vervolgsessies bespreekt Marcel persoonlijk na dat eerste gesprek, omdat elk traject anders is qua frequentie en duur. Er zijn geen vaste pakketten of langlopende verplichtingen. Je kunt per sessie beslissen.',
+  },
+  {
+    q: 'Hoe werkt het eerste gesprek?',
+    a: 'Het eerste gesprek is een vrijblijvend kennismakingsgesprek van ongeveer een uur. Marcel luistert naar wat je bezighoudt en vertelt kort hoe hij werkt. Daarna besluit je zelf of je verder wilt. Geen intake, geen formulieren, geen verplichting.',
+  },
+  {
+    q: 'Wat is het verschil tussen coaching en therapie?',
+    a: 'Coaching richt zich op het heden en de toekomst: hoe ga je om met patronen die je herkent in je dagelijks werk? Therapie richt zich vaker op het verleden en psychische klachten. Marcel is coach, geen therapeut. Heb je professionele psychologische hulp nodig? Dan verwijst hij je graag door.',
+  },
+  {
+    q: 'Wat is een Monkey Brain?',
+    a: 'Monkey Brain is een term voor het automatische denken dat van gedachte naar gedachte springt, als een aap van tak naar tak. Het is de stem die \u2019s nachts zegt dat je het beter had moeten doen. Geen diagnose, geen stoornis. Gewoon hoe je brein werkt onder druk. Lees meer op de <a href="/werkwijze">werkwijze</a> pagina.',
+  },
+  {
+    q: 'Hoe lang duurt een coachingtraject?',
+    a: 'Dat verschilt per persoon. Sommige mensen hebben genoeg aan drie of vier sessies, anderen komen maandelijks terug over een langere periode. Marcel werkt niet met vaste trajecten of vooraf bepaalde aantallen. Je bepaalt zelf het tempo en wanneer je stopt.',
+  },
+  {
+    q: 'Waar vinden de sessies plaats?',
+    a: 'Sessies vinden plaats op een locatie in overleg, online via videobellen, of als wandelgesprek in de natuur. Marcel werkt niet vanuit een vaste praktijkruimte. Hij komt naar jou toe of jullie spreken af op een rustige plek in de omgeving van Emmen.',
+  },
+  {
+    q: 'Is coaching iets voor mij?',
+    a: 'Coaching bij Marcel is bedoeld voor artsen en zorgprofessionals die merken dat het werk hen meer kost dan het oplevert. Je hoeft geen burnout te hebben. Het begint vaak met herkenning: je hoofd stopt niet, je lichaam geeft signalen, je plezier is verdwenen. Lees meer op de <a href="/voor-wie">voor-wie</a> pagina.',
+  },
+  {
+    q: 'Wordt coaching vergoed door de zorgverzekeraar?',
+    a: 'Coaching valt niet onder de basisverzekering. Sommige aanvullende verzekeringen vergoeden wel een deel van coaching, afhankelijk van je polis en de verzekeraar. Werkgevers hebben soms ook budget voor persoonlijke ontwikkeling of coachingstrajecten. Neem gerust contact op als je hier vragen over hebt.',
+  },
+  {
+    q: 'Wat is een wandelgesprek?',
+    a: 'Een wandelgesprek is een coachingsessie tijdens het wandelen in de natuur. De beweging en buitenlucht helpen om op een andere manier in gesprek te gaan. Geen sportieve wandeling, gewoon rustig lopen en stilstaan bij wat er speelt. Duurt ongeveer 75 minuten. Lees meer op de <a href="/werkwijze">werkwijze</a> pagina.',
+  },
+  {
+    q: 'Hoe neem ik contact op?',
+    a: 'Stuur een bericht via het contactformulier op de <a href="/contact">contactpagina</a> of mail direct naar info@serenitas.me. Marcel reageert meestal binnen twee werkdagen. Je hoeft niet precies te weten wat je wilt zeggen. Vertel gewoon wat je bezighoudt.',
+  },
+];
 ---
 
 <Layout
@@ -9,7 +59,69 @@ import Layout from '../layouts/Layout.astro';
   description="Antwoorden op veelgestelde vragen over coaching voor artsen en zorgprofessionals. Wat kost het, hoe werkt het, en is het iets voor jou?"
   noindex={true}
 >
+  <Header currentPath="/veelgestelde-vragen" />
+
   <main>
-    <!-- Page content: CONTENT/faq.md -->
+    {/* Section 1: Page Hero */}
+    <PageHero
+      eyebrow="FAQ"
+      heading="Veelgestelde vragen"
+      subtitle="Antwoorden op de meest gestelde vragen over coaching bij Serenitas."
+    />
+
+    {/* Section 2: FAQ Accordion */}
+    <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto" style="max-width: var(--w-narrow);">
+        <div class="flex flex-col">
+          {faqs.map((faq, i) => (
+            <details class="group" style="border-bottom: 1px solid var(--color-border);">
+              <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer list-none [-webkit-appearance:none]" style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: -0.01em; line-height: 1.4;">
+                {faq.q}
+                <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-300 group-open:rotate-45" style="color: var(--color-primary); transition-timing-function: var(--ease-project);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </summary>
+              <div class="pb-5 pr-8" style="color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.7;" set:html={faq.a} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: CTA */}
+    <section class="py-12 md:py-20 px-6" style="background-color: var(--color-primary-deep); color: #FFFFFF;">
+      <div class="mx-auto text-center" style="max-width: var(--w-narrow);">
+        <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em; color: #FFFFFF;">
+          Staat je vraag er niet bij?
+        </h2>
+        <p class="mb-8" style="font-size: 0.875rem; opacity: 0.8; line-height: 1.6;">
+          Neem gerust contact op. Marcel beantwoordt je vraag persoonlijk.
+        </p>
+        <a
+          href="/contact"
+          class="inline-block font-medium transition-colors duration-300"
+          style="font-family: var(--font-body); font-size: 1rem; font-weight: 500; color: var(--color-primary-deep); background: #FFFFFF; padding: 0.875rem 2rem; border-radius: 4px; min-width: 200px; transition-timing-function: var(--ease-project);"
+        >
+          Kennismaken
+        </a>
+        <p class="mt-4" style="font-size: 0.8rem; opacity: 0.6;">
+          info@serenitas.me
+        </p>
+      </div>
+    </section>
   </main>
+
+  <Footer />
 </Layout>
+
+<style>
+  /* Hide native summary marker across browsers */
+  details summary::-webkit-details-marker { display: none; }
+  details summary::marker { display: none; content: ''; }
+  /* Smooth link styling inside FAQ answers */
+  details div a {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

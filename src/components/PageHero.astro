@@ -1,0 +1,36 @@
+---
+/**
+ * PageHero — Shared hero for all inner pages.
+ * Eyebrow + H1 (with optional italic line) + subtitle.
+ * No photo, no stagger animation (homepage only).
+ * DESIGN.md §4: pt-40 pb-20 desktop / pt-32 pb-16 mobile.
+ * Craft: grain texture + sage gradient (same as homepage hero).
+ */
+interface Props {
+  eyebrow: string;
+  heading: string;
+  headingItalic?: string;
+  subtitle: string;
+}
+
+const { eyebrow, heading, headingItalic, subtitle } = Astro.props;
+---
+
+<section class="grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20 px-6" style="background-color: var(--color-background);">
+  <div class="absolute top-0 right-0 w-1/2 h-full pointer-events-none" style="background: radial-gradient(ellipse at 80% 30%, var(--color-primary), transparent 70%); opacity: 0.06;" aria-hidden="true"></div>
+
+  <div class="relative z-10 mx-auto" style="max-width: var(--w-content);">
+    <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+      {eyebrow}
+    </span>
+    <h1>
+      <span class="block" style="font-size: clamp(2.4414rem, 2rem + 1.5vw, 3.0518rem); letter-spacing: -0.025em; line-height: 1.1; color: var(--color-text);">{heading}</span>
+      {headingItalic && (
+        <em class="block" style="font-size: clamp(2.4414rem, 2rem + 1.5vw, 3.0518rem); letter-spacing: -0.025em; line-height: 1.1; color: var(--color-primary-dark); font-style: italic;">{headingItalic}</em>
+      )}
+    </h1>
+    <p class="mt-6 font-light" style="font-size: 1.25rem; line-height: 1.55; color: var(--color-text-muted); max-width: 38rem;">
+      {subtitle}
+    </p>
+  </div>
+</section>

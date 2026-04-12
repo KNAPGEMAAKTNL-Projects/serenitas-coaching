@@ -1,7 +1,13 @@
 ---
-// Ervaringen — Coaching voor Zorgprofessionals
-// CONTENT/ervaringen.md: placeholder page
+/**
+ * Ervaringen — Placeholder page
+ * CONTENT/ervaringen.md: 3 sections (hero, placeholder, CTA)
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 ---
 
 <Layout
@@ -9,7 +15,54 @@ import Layout from '../layouts/Layout.astro';
   description="Lees wat artsen en zorgprofessionals ervaren na coaching bij Marcel Zoeteman. Echte verhalen, geen verzonnen reviews."
   noindex={true}
 >
+  <Header currentPath="/ervaringen" />
+
   <main>
-    <!-- Page content: CONTENT/ervaringen.md -->
+    {/* Section 1: Page Hero */}
+    <PageHero
+      eyebrow="Ervaringen"
+      heading="Ervaringen"
+      subtitle="Wat zorgprofessionals ervaren na coaching bij Marcel Zoeteman."
+    />
+
+    {/* Section 2: Placeholder */}
+    <section class="py-16 md:py-32 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto text-center" style="max-width: var(--w-narrow);">
+        {/* Decorative quote mark */}
+        <div aria-hidden="true" style="font-family: var(--font-heading); font-size: 4rem; line-height: 1; color: var(--color-primary); opacity: 0.15; margin-bottom: 1rem;">
+          &ldquo;
+        </div>
+
+        <p class="italic mb-10" style="font-size: 1.25rem; line-height: 1.6; color: var(--color-text-muted);">
+          Binnenkort verschijnen hier ervaringen van artsen en zorgprofessionals die het coachingtraject hebben doorlopen.
+        </p>
+
+        <div class="text-left leading-relaxed" style="padding: 1.5rem; background-color: var(--color-surface-elevated); border-radius: 6px; line-height: 1.7;">
+          <p class="mb-4" style="color: var(--color-text);">
+            Ik ben op zoek naar zorgprofessionals die openstaan voor een vrijblijvend kennismakingsgesprek. De eerste trajecten zijn zonder kosten, in ruil voor je eerlijke ervaring achteraf.
+          </p>
+          <p style="color: var(--color-text-muted);">
+            Herken je de gedachten op de <a href="/voor-wie" class="underline underline-offset-2" style="color: var(--color-primary-dark);">voor-wie</a> pagina? Neem gerust contact op.
+          </p>
+          <div class="mt-4">
+            <a href="/contact" class="ghost-link" style="border-bottom-color: var(--color-primary-dark);">
+              Neem contact op
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: CTA */}
+    <CtaSection
+      heading="Herken je dit?"
+      subtitle="Laten we praten."
+      body="Een eerste gesprek is vrijblijvend."
+      email="info@serenitas.me"
+      showForm={true}
+    />
   </main>
+
+  <Footer />
 </Layout>

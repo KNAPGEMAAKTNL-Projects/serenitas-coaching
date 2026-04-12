@@ -1,7 +1,13 @@
 ---
-// Privacyverklaring
-// CONTENT/privacy.md
+/**
+ * Privacyverklaring — Legal page
+ * CONTENT/privacy.md: AVG-compliant privacy statement in plain Dutch
+ * Simple typography, no decorative elements.
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <Layout
@@ -9,7 +15,179 @@ import Layout from '../layouts/Layout.astro';
   description="Privacyverklaring van Serenitas Coaching. Hoe Marcel Zoeteman omgaat met je gegevens conform de AVG."
   noindex={true}
 >
+  <Header currentPath="/privacy" />
+
   <main>
-    <!-- Page content: CONTENT/privacy.md -->
+    {/* Page Hero — minimal for legal page */}
+    <PageHero
+      eyebrow="Juridisch"
+      heading="Privacyverklaring"
+      subtitle="Hoe Marcel Zoeteman omgaat met je gegevens."
+    />
+
+    {/* Legal content */}
+    <section class="py-16 md:py-24 px-6" style="background-color: var(--color-surface);">
+      <article class="mx-auto prose-legal" style="max-width: var(--w-narrow);">
+
+        <p class="italic mb-8" style="font-size: 0.8rem; color: var(--color-text-muted);">
+          Laatst bijgewerkt: [datum invullen bij publicatie]
+        </p>
+
+        <h2>Wie is verantwoordelijk voor je gegevens?</h2>
+        <p>
+          Serenitas Coaching is verantwoordelijk voor de verwerking van je persoonsgegevens zoals beschreven in deze privacyverklaring.
+        </p>
+        <p><strong>Contactgegevens:</strong></p>
+        <ul>
+          <li>Serenitas Coaching</li>
+          <li>[Adres]</li>
+          <li>[Postcode] Emmen</li>
+          <li>E-mail: info@serenitas.me</li>
+          <li>KvK-nummer: [KvK-nummer]</li>
+        </ul>
+        <p>Marcel Zoeteman is de enige die toegang heeft tot je gegevens.</p>
+
+        <h2>Welke gegevens verzamelen we?</h2>
+
+        <h3>Contactformulier</h3>
+        <p>Als je het contactformulier invult, bewaren we:</p>
+        <ul>
+          <li>Je naam</li>
+          <li>Je e-mailadres</li>
+          <li>De inhoud van je bericht</li>
+        </ul>
+        <p>We gebruiken deze gegevens alleen om contact met je op te nemen over je vraag. Je gegevens worden niet gedeeld met derden.</p>
+
+        <h3>Website-analyse</h3>
+        <p>
+          We gebruiken Cloudflare Web Analytics om te begrijpen hoe bezoekers onze website gebruiken. Dit systeem werkt zonder cookies en verwerkt geen persoonsgegevens. Er worden geen IP-adressen opgeslagen, geen bezoekers gevolgd en geen profielen aangemaakt.
+        </p>
+
+        <h2>Waarom bewaren we je gegevens?</h2>
+        <div class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Gegeven</th>
+                <th>Doel</th>
+                <th>Grondslag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Naam + e-mail + bericht</td>
+                <td>Om je vraag te beantwoorden</td>
+                <td>Gerechtvaardigd belang (je hebt zelf contact opgenomen)</td>
+              </tr>
+              <tr>
+                <td>Websitestatistieken</td>
+                <td>Om de website te verbeteren</td>
+                <td>Gerechtvaardigd belang (geen persoonsgegevens)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Hoe lang bewaren we je gegevens?</h2>
+        <p>
+          Contactformuliergegevens worden bewaard zolang dat nodig is voor de afhandeling van je vraag, met een maximum van 12 maanden na het laatste contact. Daarna worden ze verwijderd.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          Deze website gebruikt geen cookies. Cloudflare Web Analytics werkt cookievrij. Er is geen cookiebanner nodig.
+        </p>
+
+        <h2>Delen met derden</h2>
+        <p>Je gegevens worden niet verkocht, verhuurd of gedeeld met derden. De enige uitzonderingen:</p>
+        <ul>
+          <li><strong>Cloudflare:</strong> Host onze website en verwerkt het formulierverkeer. Cloudflare verwerkt technische gegevens om de website te leveren.</li>
+        </ul>
+
+        <h2>Je rechten</h2>
+        <p>Je hebt het recht om:</p>
+        <ul>
+          <li><strong>Inzage</strong> te vragen in je persoonsgegevens</li>
+          <li>Je gegevens te laten <strong>corrigeren</strong> als ze niet kloppen</li>
+          <li>Je gegevens te laten <strong>verwijderen</strong></li>
+          <li><strong>Bezwaar</strong> te maken tegen de verwerking van je gegevens</li>
+          <li>Je gegevens op te vragen in een <strong>overdraagbaar formaat</strong></li>
+        </ul>
+        <p>Stuur je verzoek naar info@serenitas.me. Marcel reageert binnen 30 dagen.</p>
+
+        <h2>Klacht indienen</h2>
+        <p>
+          Vind je dat we niet zorgvuldig genoeg omgaan met je gegevens? Neem dan eerst contact met ons op via info@serenitas.me. Komen we er samen niet uit, dan kun je een klacht indienen bij de <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer">Autoriteit Persoonsgegevens</a>.
+        </p>
+
+        <h2>Wijzigingen</h2>
+        <p>
+          Deze privacyverklaring kan worden aangepast. De meest recente versie staat altijd op deze pagina. We raden je aan deze pagina regelmatig te bekijken.
+        </p>
+      </article>
+    </section>
   </main>
+
+  <Footer />
 </Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem);
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+  .prose-legal h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+  .prose-legal p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+  .prose-legal ul {
+    margin-bottom: 1rem;
+    padding-left: 1.25rem;
+    list-style-type: disc;
+  }
+  .prose-legal li {
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+  }
+  .prose-legal strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+  .prose-legal a {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+  .prose-legal th, .prose-legal td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+  .prose-legal th {
+    font-weight: 500;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

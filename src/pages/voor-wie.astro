@@ -1,7 +1,13 @@
 ---
-// Voor wie — Coaching voor Artsen en Zorgprofessionals
-// CONTENT/voor-wie.md: 7 sections
+/**
+ * Voor wie — Coaching voor Artsen en Zorgprofessionals
+ * CONTENT/voor-wie.md: 7 sections
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 ---
 
 <Layout
@@ -9,7 +15,182 @@ import Layout from '../layouts/Layout.astro';
   description="Coaching voor artsen, specialisten en zorgprofessionals die moe zijn van goed willen doen. Herken je de signalen? Lees of dit bij jou past."
   noindex={true}
 >
+  <Header currentPath="/voor-wie" />
+
   <main>
-    <!-- Page content: CONTENT/voor-wie.md -->
+    {/* Section 1: Page Hero */}
+    <PageHero
+      eyebrow="Voor wie"
+      heading="Herken je"
+      headingItalic="deze gedachten?"
+      subtitle="Je bent goed in je vak. Maar ergens onderweg is het plezier verdwenen en de druk gebleven."
+    />
+
+    {/* Section 2: Dit is voor jou als... */}
+    <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface-elevated);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <h2 class="mb-10" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Dit is voor jou als...
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+          {[
+            { title: 'Je draagt het werk mee naar huis', text: 'De patiënt van vanmiddag laat je niet los. De rapportage schrijf je \'s avonds. De gedachte "had ik dat anders moeten doen?" is je vaste metgezel op de bank.' },
+            { title: 'Je functioneert goed, maar voelt steeds minder', text: 'Collega\'s zien iemand die het allemaal aankan. Jij voelt een groeiende leegte. Het enthousiasme is langzaam weggegleden, zonder dat je kunt aanwijzen wanneer.' },
+            { title: 'Je grenzen vervagen', text: 'Je zegt ja terwijl je nee bedoelt. Je neemt taken over van collega\'s die het ook druk hebben. Je voelt verantwoordelijkheid voor dingen die niet van jou zijn.' },
+            { title: 'Je lichaam geeft signalen', text: 'Slechter slapen. Prikkelbaar zijn. Minder eetlust of juist meer. Hoofdpijn. Het zijn geen diagnoses, het zijn signalen. Je weet het eigenlijk al.' },
+            { title: 'Je zoekt geen methode, maar rust', text: 'Je hebt geen behoefte aan weer een cursus, een framework of een protocol. Je wilt iemand die begrijpt hoe het voelt en je helpt om anders te kijken.' },
+            { title: 'Je staat open voor een andere benadering', text: 'Meditatie, bewustzijn, stilstaan bij patronen. Misschien klinkt het onwennig. Maar ergens voel je dat harder werken niet de oplossing is.' },
+          ].map(item => (
+            <div>
+              <h3 class="mb-3" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">
+                {item.title}
+              </h3>
+              <p class="leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: Artsen en zorgprofessionals — 7fr/5fr text+cards */}
+    <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
+        <div>
+          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+            Mijn doelgroep
+          </span>
+          <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+            Artsen en zorgprofessionals
+          </h2>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Ik werk specifiek met mensen uit de zorg. Niet omdat anderen geen baat zouden hebben bij coaching, maar omdat ik het vak van binnenuit ken. Ik weet wat het betekent om om drie uur 's nachts te worden gebeld. Ik weet hoe het voelt om een familie slecht nieuws te brengen. Ik weet hoe de administratie je langzaam leegzuigt.
+          </p>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Die gedeelde taal maakt het gesprek anders. Je hoeft niet uit te leggen waarom het zwaar is. We kunnen direct naar de kern.
+          </p>
+          <p class="leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Mijn coaching is er voor artsen, verpleegkundigen, specialisten, verzorgenden, en alle andere professionals die in de zorg werken en merken dat het vak hen meer kost dan het oplevert.
+          </p>
+        </div>
+
+        {/* Role cards */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { role: 'Huisartsen', desc: 'De spreekkamer die nooit leeg raakt. De verantwoordelijkheid die doorloopt na vijf uur.' },
+            { role: 'Specialisten', desc: 'De druk van complexe beslissingen. De eenzaamheid van eindverantwoordelijkheid.' },
+            { role: 'Verpleegkundigen', desc: 'De nabijheid van lijden. De onzichtbaarheid van je eigen behoeften.' },
+            { role: 'Leidinggevenden in de zorg', desc: 'Het spanningsveld tussen team, organisatie en je eigen idealen.' },
+          ].map(card => (
+            <div class="p-5" style="background-color: var(--color-surface-elevated); border-radius: 6px;">
+              <h3 class="mb-2" style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: -0.01em;">
+                {card.role}
+              </h3>
+              <p style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6;">
+                {card.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Section 4: De Monkey Brain in actie */}
+    <section class="py-16 md:py-24 px-6" style="background-color: var(--color-background);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          De Monkey Brain in actie
+        </h2>
+        <p class="mb-10 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 55ch;">
+          Dit zijn gedachten die je misschien herkent. Niet omdat er iets mis met je is, maar omdat de Monkey Brain van zorgprofessionals dezelfde taal spreekt.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {[
+            { cat: 'Perfectionisme', thoughts: ['"Als ik het niet perfect doe, gaat er iets mis."', '"Ik had dat eerder moeten zien."'] },
+            { cat: 'Verantwoordelijkheid', thoughts: ['"Ik kan niet ziek melden, dan moet mijn collega het alleen doen."', '"Als ik nee zeg, laat ik het team in de steek."'] },
+            { cat: 'Controle', thoughts: ['"Ik moet alles checken, anders gaat het fout."', '"Straks merk ik te laat dat er iets aan de hand is."'] },
+            { cat: 'Zelfkritiek', thoughts: ['"Een echte arts zou dit aankunnen."', '"Iedereen lijkt het makkelijker te hebben dan ik."'] },
+          ].map(group => (
+            <div>
+              <h3 class="mb-3 font-medium" style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: -0.01em; color: var(--color-primary-dark);">
+                {group.cat}
+              </h3>
+              <div class="flex flex-col gap-2">
+                {group.thoughts.map(t => (
+                  <div class="italic" style="color: var(--color-text-muted); padding: 0.625rem 1rem; border-left: 3px solid var(--color-primary); border-radius: 0 4px 4px 0; background: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.5;">
+                    {t}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p class="mt-10" style="font-family: var(--font-heading); font-size: 1.1rem; line-height: 1.4; color: var(--color-text);">
+          Dit zijn geen feiten. Dit is je Monkey Brain die springt. En hij is te temmen.
+        </p>
+      </div>
+    </section>
+
+    {/* Section 5: Dit is niet voor jou als... */}
+    <section class="py-12 md:py-20 px-6" style="background-color: var(--color-sage-tint);">
+      <div class="mx-auto" style="max-width: var(--w-narrow);">
+        <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Dit is niet voor jou als...
+        </h2>
+        <p class="mb-6 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted);">
+          Ik ben eerlijk over wat ik wel en niet bied. Coaching bij mij past niet bij iedereen, en dat is prima. Herkenbaarheid en eerlijkheid zijn belangrijker dan een volle agenda.
+        </p>
+        <ul class="flex flex-col gap-3 mb-8">
+          {[
+            'Je zoekt een snelle oplossing of een stappenplan dat je in twee weken volgt',
+            'Je wilt een certificaat of bewijs van deelname voor je werkgever',
+            'Je bent niet bereid om écht stil te staan bij wat er speelt',
+            'Je verwacht dat iemand anders het voor je oplost',
+            'Je hebt op dit moment professionele psychologische hulp nodig (dan verwijs ik je graag door)',
+          ].map(item => (
+            <li class="flex items-baseline gap-3" style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6;">
+              <span class="block flex-shrink-0 mt-[0.4em]" style="width: 4px; height: 4px; background-color: var(--color-text-muted); border-radius: 50%; opacity: 0.5;" aria-hidden="true"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div class="p-5" style="background: rgba(255,255,255,0.5); border-radius: 6px;">
+          <p style="font-size: 0.875rem; line-height: 1.6;">
+            <strong>Twijfel je?</strong> Dat is normaal. De meeste mensen die bij me terechtkomen twijfelden ook. Een eerste gesprek is vrijblijvend en helpt je om te voelen of dit bij je past.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 6: Brug */}
+    <section class="py-12 md:py-20 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto text-center" style="max-width: var(--w-narrow);">
+        <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Je hoeft het niet alleen te doen
+        </h2>
+        <p class="mb-6 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted);">
+          Zorgprofessionals zijn gewend om voor anderen te zorgen. Niet voor zichzelf. Dat is precies het patroon dat we samen doorbreken.
+        </p>
+        <a href="/werkwijze" class="ghost-link">
+          Lees hoe ik werk
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+
+    {/* Section 7: CTA */}
+    <CtaSection
+      heading="Herken je dit?"
+      subtitle=""
+      body="Stuur me een bericht. Een eerste gesprek is vrijblijvend en geeft je ruimte om te ontdekken of dit bij je past."
+      email="info@serenitas.me"
+      showForm={true}
+    />
   </main>
+
+  <Footer />
 </Layout>

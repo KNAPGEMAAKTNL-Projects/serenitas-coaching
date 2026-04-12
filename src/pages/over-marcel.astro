@@ -1,7 +1,14 @@
 ---
-// Over Marcel — Arts, Coach en Ervaringsdeskundige
-// CONTENT/over-marcel.md: 7 sections
+/**
+ * Over Marcel — Arts, Coach en Ervaringsdeskundige
+ * CONTENT/over-marcel.md: 7 sections
+ * Layout inspired by over-marcel-reference.html
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 ---
 
 <Layout
@@ -9,7 +16,157 @@ import Layout from '../layouts/Layout.astro';
   description="Marcel Zoeteman is specialist ouderengeneeskunde met 20+ jaar ervaring. Na zijn eigen burnout werd hij coach voor artsen en zorgprofessionals. Lees zijn verhaal."
   noindex={true}
 >
+  <Header currentPath="/over-marcel" />
+
   <main>
-    <!-- Page content: CONTENT/over-marcel.md -->
+    {/* Section 1: Page Hero */}
+    <PageHero
+      eyebrow="Over Marcel"
+      heading="Arts. Zen-beoefenaar."
+      headingItalic="Het levende bewijs."
+      subtitle="Ik weet hoe het voelt om je te verliezen in een vak dat je lief is. En ik weet hoe het voelt om terug te keren."
+    />
+
+    {/* Section 2: Portret en introductie — 5fr/7fr asymmetric */}
+    <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface-elevated);">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
+        <div class="w-full flex items-center justify-center overflow-hidden" style="aspect-ratio: 3/4; background-color: var(--color-primary); border: 10px solid #FFFFFF; border-radius: 6px;">
+          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Portretfoto Marcel]</span>
+        </div>
+        <div class="flex flex-col justify-center">
+          <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+            Marcel Zoeteman
+          </h2>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Ik ben arts. Al meer dan twintig jaar werk ik als specialist ouderengeneeskunde. Ik heb honderden gesprekken gevoerd. Met families in verdriet. Met collega's die het niet meer zagen zitten. En met mezelf, op de momenten dat ik dacht: dit kan toch niet alles zijn?
+          </p>
+          <p class="leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Ik ben van huis uit geen coach. Mijn pad begon in de spreekkamer, niet op een podium. Wat ik nu doe, komt voort uit wat ik zelf heb meegemaakt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: Het verhaal — Timeline */}
+    <section class="py-16 md:py-32 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto" style="max-width: 48rem;">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          Mijn pad
+        </span>
+        <h2 class="mb-12" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Van arts naar bewustzijn
+        </h2>
+
+        <div class="flex flex-col gap-10">
+          {[
+            { year: '~2003', title: 'De start', text: 'Begonnen als arts met het ideaal om er te zijn voor kwetsbare mensen. De ouderenzorg voelde als een roeping. De combinatie van medische kennis en menselijk contact was precies waarvoor ik had gekozen.' },
+            { year: '~2012', title: 'De kentering', text: 'Na jaren van toenemende druk begon ik te merken dat ik niet meer dezelfde arts was. Het enthousiasme maakte plaats voor functioneren. Ik deed alles goed, maar voelde steeds minder. Hoge schouders. Oppervlakkige adem. Ik was moe van goed willen doen.' },
+            { year: '~2015', title: 'De ontdekking', text: 'Via een collega kwam ik in aanraking met zenmeditatie. Niet de wierook-variant, maar de nuchtere, eenvoudige praktijk van stilstaan bij wat er is. Het was oncomfortabel. En het werkte.' },
+            { year: '~2018', title: 'De verbinding', text: 'Ik begon de principes van bewust waarnemen toe te passen in mijn dagelijks werk. Niet als extra taak bovenop alles, maar als een manier om wat er al was anders te bekijken. Collega\'s merkten het verschil. Ze vroegen: wat doe jij anders?' },
+            { year: 'Nu', title: 'Het levende bewijs', text: 'Ik werk nog steeds als arts. Maar ik coach ook zorgprofessionals die vastlopen in hetzelfde patroon dat ik herken. Geen theorie uit een boek. Geleefde ervaring. Ik ben het levende bewijs dat het anders kan.' },
+          ].map(entry => (
+            <div class="grid grid-cols-[4rem_1fr] md:grid-cols-[6rem_1fr] gap-4 md:gap-8 items-start">
+              <span class="pt-1 font-medium" style="font-family: var(--font-heading); font-size: 0.8rem; color: var(--color-primary); opacity: 0.7;">
+                {entry.year}
+              </span>
+              <div>
+                <h3 class="mb-2" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">
+                  {entry.title}
+                </h3>
+                <p class="leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 55ch;">
+                  {entry.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Section 4: Wandelgesprek — 7fr/5fr asymmetric */}
+    <section class="py-12 md:py-24 px-6" style="background-color: var(--color-background);">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
+        <div class="w-full flex items-center justify-center overflow-hidden" style="aspect-ratio: 16/10; background-color: var(--color-primary-light); border-radius: 6px;">
+          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Marcel wandelend in natuur]</span>
+        </div>
+        <div class="flex flex-col justify-center">
+          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+            Hoe ik coach
+          </span>
+          <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+            Naast je, niet tegenover je
+          </h2>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Mijn coaching vindt vaak plaats tijdens een wandeling. Niet achter een bureau, niet met een klembord. Gewoon lopen, praten, stilstaan. Letterlijk en figuurlijk.
+          </p>
+          <p class="leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            In de natuur vallen de muren sneller weg. Er is geen wachtkamer, geen witte jas. Er zijn twee mensen die samen kijken naar wat er speelt.
+          </p>
+          <blockquote class="mt-8 italic" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); line-height: 1.4; color: var(--color-text);">
+            Niet door méér te doen, maar door beter te zien.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 5: Achtergrond / Credentials */}
+    <section class="py-12 md:py-20 px-6" style="background-color: var(--color-sage-tint);">
+      <div class="mx-auto" style="max-width: var(--w-narrow);">
+        <h2 class="mb-8 text-center" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Achtergrond
+        </h2>
+        <div class="flex flex-col gap-6">
+          {[
+            { label: 'Opleiding', value: 'Arts, specialist ouderengeneeskunde', note: 'Dezelfde opleiding als de artsen die ik coach. Ik ken het vak van binnenuit.' },
+            { label: 'Ervaring', value: '20+ jaar in de ouderenzorg', note: 'Niet als buitenstaander, maar als iemand die er elke dag middenin staat.' },
+            { label: 'Zen', value: 'Jarenlange beoefening', note: 'De basis onder mijn coaching. Geen certificaat, wel dagelijkse praktijk.' },
+            { label: 'Coaching', value: 'Individuele begeleiding', note: 'Gesprek of wandeling, afgestemd op jouw situatie.' },
+            { label: 'Werkwijze', value: 'Monkey Brain Temmer', note: 'Herkennen, oorsprong checken, bewust kiezen. Eenvoudig maar niet makkelijk.' },
+          ].map(cred => (
+            <div class="py-4" style="border-bottom: 1px solid var(--color-border);">
+              <div class="flex flex-col md:flex-row md:items-baseline md:gap-4">
+                <span class="font-medium uppercase mb-1 md:mb-0" style="font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted); min-width: 7rem;">
+                  {cred.label}
+                </span>
+                <span class="font-medium" style="font-family: var(--font-heading); font-size: 1rem;">
+                  {cred.value}
+                </span>
+              </div>
+              <p class="mt-2" style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6;">
+                {cred.note}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Section 6: Natuur en citaat */}
+    <section class="py-16 md:py-24 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <div class="w-full flex items-center justify-center overflow-hidden mb-12" style="aspect-ratio: 21/9; background-color: var(--color-surface-elevated); border-radius: 6px;">
+          <span class="text-xs font-medium uppercase tracking-widest" style="color: var(--color-text-muted);">[Panoramafoto natuur, bospad]</span>
+        </div>
+        <blockquote class="mx-auto text-center" style="max-width: var(--w-narrow);">
+          <p class="italic" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); line-height: 1.4; color: var(--color-text);">
+            "Je Monkey Brain stopt niet als je hem wegduwt. Hij kalmeert als je hem opmerkt."
+          </p>
+          <cite class="block mt-4 not-italic" style="font-size: 0.8rem; color: var(--color-text-muted);">
+            Marcel Zoeteman
+          </cite>
+        </blockquote>
+      </div>
+    </section>
+
+    {/* Section 7: CTA */}
+    <CtaSection
+      heading="Herken je dit?"
+      subtitle="Laten we praten."
+      body="Een eerste gesprek is vrijblijvend en kost je niets behalve een uur van je tijd."
+      email="info@serenitas.me"
+      showForm={true}
+    />
   </main>
+
+  <Footer />
 </Layout>

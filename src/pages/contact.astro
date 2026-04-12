@@ -1,7 +1,14 @@
 ---
-// Contact — Kennismaken
-// CONTENT/contact.md: 4 sections
+/**
+ * Contact — Kennismaken
+ * CONTENT/contact.md: 4 sections
+ * Layout: hero + form with info sidebar + reassurance + quote
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 
 <Layout
@@ -9,7 +16,101 @@ import Layout from '../layouts/Layout.astro';
   description="Herken je dit? Neem contact op met Marcel Zoeteman. Stuur een bericht via het formulier of mail naar info@serenitas.me. Vrijblijvend kennismaken."
   noindex={true}
 >
+  <Header currentPath="/contact" />
+
   <main>
-    <!-- Page content: CONTENT/contact.md -->
+    {/* Section 1: Page Hero */}
+    <PageHero
+      eyebrow="Contact"
+      heading="Laten we praten."
+      subtitle="Een eerste gesprek is vrijblijvend en kost je niets behalve een uur van je tijd. Geen intake, geen formulieren, geen verplichting."
+    />
+
+    {/* Section 2: Contact form + info — 7fr/5fr */}
+    <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
+        {/* Form column */}
+        <div>
+          <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+            Neem contact op
+          </h2>
+          <ContactForm variant="light" />
+        </div>
+
+        {/* Info sidebar */}
+        <div class="flex flex-col justify-start gap-8 md:pt-14">
+          <div>
+            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+              E-mail
+            </h3>
+            <a href="mailto:info@serenitas.me" class="underline underline-offset-2" style="color: var(--color-primary-dark);">
+              info@serenitas.me
+            </a>
+          </div>
+
+          <div>
+            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+              Reactietijd
+            </h3>
+            <p style="color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.6;">
+              Marcel reageert binnen twee werkdagen op je bericht.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+              Locatie
+            </h3>
+            <p style="color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.6;">
+              Emmen en omgeving. Op locatie, online of als wandelgesprek in de natuur.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: Wat kun je verwachten? */}
+    <section class="py-12 md:py-20 px-6" style="background-color: var(--color-surface-elevated);">
+      <div class="mx-auto" style="max-width: var(--w-narrow);">
+        <h2 class="mb-8" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Wat kun je verwachten?
+        </h2>
+        <div class="flex flex-col gap-6">
+          {[
+            { num: '1', title: 'Stuur een bericht', text: 'Via het formulier of per e-mail. Je hoeft niet precies te weten wat je wilt zeggen. Vertel gewoon wat je bezighoudt.' },
+            { num: '2', title: 'Marcel neemt contact op', text: 'Binnen twee werkdagen ontvang je een reactie. Meestal per e-mail, soms telefonisch als dat beter past.' },
+            { num: '3', title: 'Een vrijblijvend gesprek', text: 'We kijken samen of er een klik is en of coaching bij je past. Geen verplichtingen, geen verkooppraatje.' },
+          ].map(step => (
+            <div class="flex gap-4 items-start">
+              <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full" style="background-color: var(--color-primary); opacity: 0.15; font-family: var(--font-heading); font-size: 0.8rem; color: var(--color-primary-dark); font-weight: 500;">
+                {step.num}
+              </span>
+              <div>
+                <h3 class="mb-1" style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: -0.01em;">
+                  {step.title}
+                </h3>
+                <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6;">
+                  {step.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Section 4: Quote */}
+    <section class="py-16 md:py-24 px-6" style="background-color: var(--color-background);">
+      <div class="mx-auto text-center" style="max-width: var(--w-narrow);">
+        <div aria-hidden="true" style="font-family: var(--font-heading); font-size: 4rem; line-height: 1; color: var(--color-primary); opacity: 0.15; margin-bottom: 0.5rem;">
+          &ldquo;
+        </div>
+        <blockquote class="italic" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); line-height: 1.4; color: var(--color-text);">
+          Je hoeft het niet op te lossen. Je hoeft het alleen maar te zien.
+        </blockquote>
+      </div>
+    </section>
   </main>
+
+  <Footer />
 </Layout>

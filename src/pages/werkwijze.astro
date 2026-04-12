@@ -1,7 +1,13 @@
 ---
-// Hoe ik werk — Monkey Brain Temmer
-// CONTENT/werkwijze.md: 7 sections
+/**
+ * Hoe ik werk — Monkey Brain Temmer
+ * CONTENT/werkwijze.md: 7 sections
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
 ---
 
 <Layout
@@ -9,7 +15,231 @@ import Layout from '../layouts/Layout.astro';
   description="Je Monkey Brain springt van tak naar tak. In 3 stappen leer je hem herkennen, de oorsprong checken en bewust kiezen. Coaching via gesprek of wandeling."
   noindex={true}
 >
+  <Header currentPath="/werkwijze" />
+
   <main>
-    <!-- Page content: CONTENT/werkwijze.md -->
+    {/* Section 1: Page Hero */}
+    <PageHero
+      eyebrow="Werkwijze"
+      heading="De Monkey Brain"
+      headingItalic="temmen."
+      subtitle="Niet door meer te doen. Niet door harder te werken. Maar door beter te zien wat er al is."
+    />
+
+    {/* Section 2: Het concept — text + thought bubbles */}
+    <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface-elevated);">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
+        <div>
+          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+            Het concept
+          </span>
+          <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+            Wat is een Monkey Brain?
+          </h2>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            In de boeddhistische traditie wordt de onrustige geest vergeleken met een aap die van tak naar tak springt. Altijd bezig, altijd onrustig, altijd op zoek naar de volgende gedachte om aan vast te grijpen.
+          </p>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Voor zorgprofessionals is die Monkey Brain herkenbaar. Het is de stem die zegt dat je het beter had moeten doen. Die thuis nog bezig is met de patiënt van vanmiddag. Die om drie uur 's nachts inventariseert wat er morgen allemaal moet gebeuren.
+          </p>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Je Monkey Brain is niet je vijand. Hij probeert je te beschermen. Maar als je hem ongecontroleerd laat springen, kost het je energie, slaap, plezier en uiteindelijk je gezondheid.
+          </p>
+          <p class="leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Mijn aanpak draait niet om het stil krijgen van die aap. Het gaat erom dat je leert opmerken wanneer hij springt, begrijpt waarom hij springt, en bewust kiest of je mee wilt springen.
+          </p>
+        </div>
+
+        {/* Thought bubbles */}
+        <div class="flex flex-col gap-3">
+          {[
+            '"Heb ik dat goed gedaan?"',
+            '"Had ik anders moeten reageren?"',
+            '"Ik maak thuis de rapportage wel even af."',
+            '"Mijn collega heeft het ook al druk."',
+            '"Straks gaat er iets mis."',
+            '"Dit had ik eerder moeten zien."',
+            '"Als ik nee zeg, denken ze dat ik het niet aankan."',
+          ].map(thought => (
+            <div class="italic leading-snug" style="color: var(--color-text-muted); padding: 0.875rem 1.25rem; border-left: 3px solid var(--color-primary); border-radius: 0 4px 4px 0; background: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.5;">
+              {thought}
+            </div>
+          ))}
+          <p class="mt-4" style="font-family: var(--font-heading); font-size: 1.1rem; line-height: 1.4; color: var(--color-text);">
+            Herkenbaar? Dat is je Monkey Brain. En hij is te temmen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: Drie stappen */}
+    <section class="py-16 md:py-32 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          De aanpak
+        </span>
+        <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Drie stappen
+        </h2>
+        <p class="mb-12 leading-relaxed" style="max-width: 55ch; line-height: 1.7; color: var(--color-text-muted);">
+          Mijn coaching draait om drie bewegingen. Ze lijken eenvoudig. Dat zijn ze ook. Maar eenvoudig is niet hetzelfde als makkelijk. Het vraagt oefening, geduld en eerlijkheid.
+        </p>
+
+        <div class="flex flex-col gap-16" style="max-width: 48rem;">
+          {/* Step 1 */}
+          <div class="grid grid-cols-[auto_1fr] gap-6 items-start">
+            <span class="pt-[0.15em]" style="font-family: var(--font-heading); font-size: 2.4414rem; font-weight: 400; color: var(--color-primary); opacity: 0.3; line-height: 1;">1</span>
+            <div>
+              <h3 class="mb-3" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">Herkennen</h3>
+              <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                De eerste stap is opmerken. Opmerken dat je hoofd weer springt. Dat je midden in een gesprek al bezig bent met het volgende. Dat je in de auto zit en niet weet hoe je daar bent gekomen.
+              </p>
+              <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Herkennen is geen oordeel. Je hoeft niet te vinden dat je het verkeerd doet. Je hoeft alleen maar te zeggen: daar is hij weer. Mijn Monkey Brain.
+              </p>
+              <p class="italic" style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5;">
+                "Ik merk dat ik nu weer aan morgen denk terwijl ik nog midden in vandaag zit."
+              </p>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div class="grid grid-cols-[auto_1fr] gap-6 items-start">
+            <span class="pt-[0.15em]" style="font-family: var(--font-heading); font-size: 2.4414rem; font-weight: 400; color: var(--color-primary); opacity: 0.3; line-height: 1;">2</span>
+            <div>
+              <h3 class="mb-3" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">Check de oorsprong</h3>
+              <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Elke springende gedachte heeft een bron. Soms is die bron zorgzaamheid: je geeft om je patiënten en wilt het goed doen. Soms is de bron angst: bang om iets te missen, bang voor oordeel, bang om niet te voldoen.
+              </p>
+              <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Dat verschil maakt uit. Zorgzaamheid verdient aandacht. Angst verdient begrip, maar geen gehoor. Door de oorsprong te checken leer je onderscheid maken tussen gedachten die je dienen en gedachten die je uitputten.
+              </p>
+              <p class="italic" style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5;">
+                "Komt deze onrust uit betrokkenheid? Of uit de overtuiging dat ik alles perfect moet doen?"
+              </p>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div class="grid grid-cols-[auto_1fr] gap-6 items-start">
+            <span class="pt-[0.15em]" style="font-family: var(--font-heading); font-size: 2.4414rem; font-weight: 400; color: var(--color-primary); opacity: 0.3; line-height: 1;">3</span>
+            <div>
+              <h3 class="mb-3" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">Kies bewust</h3>
+              <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Als je de gedachte herkent en de oorsprong begrijpt, ontstaat er ruimte. In die ruimte kun je kiezen. Ga ik mee met deze gedachte? Of laat ik hem passeren?
+              </p>
+              <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Bewust kiezen is geen kracht. Het is geen willpower of discipline. Het is een zachte, heldere beslissing. Soms kies je ervoor om actie te ondernemen. Soms kies je ervoor om te rusten. Beide zijn goed, zolang het een keuze is en geen automatisme.
+              </p>
+              <p class="italic" style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5;">
+                "Ik kies ervoor om dit morgen op te pakken. Vanavond is van mij."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 4: Filosofie */}
+    <section class="py-12 md:py-20 px-6" style="background-color: var(--color-background);">
+      <div class="mx-auto text-center" style="max-width: var(--w-narrow);">
+        <div aria-hidden="true" style="font-family: var(--font-heading); font-size: 4rem; line-height: 1; color: var(--color-primary); opacity: 0.15; margin-bottom: 0.5rem;">
+          &ldquo;
+        </div>
+        <blockquote class="italic" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); line-height: 1.4; color: var(--color-text);">
+          Niet door méér te doen,<br />
+          maar door beter te zien.
+        </blockquote>
+        <p class="mt-6" style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7;">
+          De kern van mijn werkwijze is teruggaan naar eenvoud. Niet een methode erbij, maar een laag eraf.
+        </p>
+      </div>
+    </section>
+
+    {/* Section 5: Sessies */}
+    <section class="py-16 md:py-24 px-6" style="background-color: var(--color-sage-tint);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          In de praktijk
+        </span>
+        <h2 class="mb-10" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Hoe ziet een sessie eruit?
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+          {/* Het gesprek */}
+          <div>
+            <h3 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">
+              Het gesprek
+            </h3>
+            <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted);">
+              We zitten tegenover elkaar. Of naast elkaar. Afhankelijk van wat er nodig is. Ik stel vragen, maar geef ook ruimte voor stilte. Veel van wat er speelt hoeft niet meteen benoemd te worden. Soms is het genoeg om het er te laten zijn.
+            </p>
+            <p class="leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted);">
+              Een gesprek duurt ongeveer een uur. De frequentie bepaal je zelf. Sommige mensen komen wekelijks, anderen maandelijks. Het gaat om wat jij nodig hebt, niet om een vast protocol.
+            </p>
+            <p class="mt-4" style="font-size: 0.8rem; color: var(--color-text-muted);">
+              Duur: ca. 60 minuten &middot; Locatie: op afspraak of online
+            </p>
+          </div>
+
+          {/* Het wandelgesprek */}
+          <div>
+            <h3 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">
+              Het wandelgesprek
+            </h3>
+            <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted);">
+              Lopen opent iets in je hoofd dat stilzitten niet altijd kan. De beweging, de buitenlucht, het ontbreken van oogcontact: het maakt andere gesprekken mogelijk. Diepere gesprekken, vaak.
+            </p>
+            <p class="leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted);">
+              We wandelen in de natuur. Geen sportieve wandeling, gewoon rustig lopen. De route is niet belangrijk. Het gesprek wel. Of de stilte.
+            </p>
+            <p class="mt-4" style="font-size: 0.8rem; color: var(--color-text-muted);">
+              Duur: ca. 75 minuten &middot; Locatie: natuur, in overleg
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 6: Wat kun je verwachten? */}
+    <section class="py-16 md:py-24 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
+          Wat kun je verwachten?
+        </h2>
+        <p class="mb-10 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 55ch;">
+          Coaching bij mij is geen vast traject met een begin en een eind. Het is een proces dat zich ontvouwt in je eigen tempo. Dit is wel hoe het meestal gaat:
+        </p>
+
+        <div class="flex flex-col gap-8" style="max-width: 48rem;">
+          {[
+            { num: '1.', title: 'Kennismaken.', text: 'Een vrijblijvend eerste gesprek. We kijken of er een klik is en of mijn aanpak bij je past. Geen verplichting.' },
+            { num: '2.', title: 'Verkennen.', text: 'We brengen in kaart wat er speelt. Niet alleen het probleem dat je benoemt, maar ook de patronen die eronder liggen.' },
+            { num: '3.', title: 'Oefenen.', text: 'Je leert de drie stappen toepassen in je dagelijks werk. Herkennen, checken, kiezen. Klein beginnen, groot effect.' },
+            { num: '4.', title: 'Integreren.', text: 'De verandering wordt geen oefening meer, maar een manier van kijken. Je hebt de handvatten, je hebt de ervaring. De rest is van jou.' },
+          ].map(step => (
+            <div class="flex gap-4">
+              <span class="font-bold flex-shrink-0" style="font-family: var(--font-heading); color: var(--color-primary); opacity: 0.5;">{step.num}</span>
+              <div>
+                <strong style="font-family: var(--font-heading);">{step.title}</strong>
+                <span class="ml-1" style="color: var(--color-text-muted);">{step.text}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Section 7: CTA */}
+    <CtaSection
+      heading="Benieuwd hoe dit voor jou werkt?"
+      subtitle=""
+      body="Een eerste gesprek is vrijblijvend. We kijken samen of mijn werkwijze bij je past."
+      email="info@serenitas.me"
+      showForm={true}
+    />
   </main>
+
+  <Footer />
 </Layout>
