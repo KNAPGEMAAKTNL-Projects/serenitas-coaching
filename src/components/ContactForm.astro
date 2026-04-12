@@ -1,0 +1,122 @@
+---
+/**
+ * ContactForm — 3-field form (naam, e-mail, bericht) + Turnstile placeholder.
+ * DESIGN.md §5 (form field styles), §12 (CTA: "Kennismaken", never "Versturen").
+ * CONTENT/homepage.md Section 7 form table.
+ * Dark variant (on deep sage background) is the default.
+ */
+interface Props {
+  /** Form action URL (Cloudflare Worker endpoint) */
+  action?: string;
+  /** Light variant for use on white/light backgrounds */
+  variant?: 'dark' | 'light';
+}
+
+const { action = '#', variant = 'dark' } = Astro.props;
+
+const isDark = variant === 'dark';
+---
+
+<form action={action} method="post" class="flex flex-col gap-4">
+  <!-- Naam -->
+  <div class="flex flex-col gap-1.5">
+    <label for="naam" class="text-sm font-medium" style={isDark ? 'font-size: 0.8rem; opacity: 0.7;' : 'font-size: 0.8rem; color: var(--color-text-muted);'}>
+      Naam
+    </label>
+    <input
+      type="text"
+      id="naam"
+      name="naam"
+      placeholder="Je naam"
+      required
+      autocomplete="name"
+      class="outline-none transition-all duration-300"
+      style={isDark
+        ? 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #FFFFFF; transition-timing-function: var(--ease-project);'
+        : 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-text); transition-timing-function: var(--ease-project);'
+      }
+    />
+  </div>
+
+  <!-- E-mail -->
+  <div class="flex flex-col gap-1.5">
+    <label for="email" class="text-sm font-medium" style={isDark ? 'font-size: 0.8rem; opacity: 0.7;' : 'font-size: 0.8rem; color: var(--color-text-muted);'}>
+      E-mail
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="je@voorbeeld.nl"
+      required
+      autocomplete="email"
+      class="outline-none transition-all duration-300"
+      style={isDark
+        ? 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #FFFFFF; transition-timing-function: var(--ease-project);'
+        : 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-text); transition-timing-function: var(--ease-project);'
+      }
+    />
+  </div>
+
+  <!-- Bericht -->
+  <div class="flex flex-col gap-1.5">
+    <label for="bericht" class="text-sm font-medium" style={isDark ? 'font-size: 0.8rem; opacity: 0.7;' : 'font-size: 0.8rem; color: var(--color-text-muted);'}>
+      Bericht
+    </label>
+    <textarea
+      id="bericht"
+      name="bericht"
+      placeholder="Wat houdt je bezig?"
+      rows="4"
+      class="outline-none transition-all duration-300 resize-y"
+      style={isDark
+        ? 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #FFFFFF; min-height: 6rem; transition-timing-function: var(--ease-project);'
+        : 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-text); min-height: 6rem; transition-timing-function: var(--ease-project);'
+      }
+    ></textarea>
+  </div>
+
+  <!-- Honeypot (spam protection) -->
+  <div style="position: absolute; left: -9999px;" aria-hidden="true">
+    <input type="text" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <!-- Turnstile placeholder — add widget when CF Worker is configured -->
+  <!-- <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY"></div> -->
+
+  <!-- Submit -->
+  <button
+    type="submit"
+    class="w-full text-center font-medium transition-colors duration-300"
+    style={isDark
+      ? 'font-family: var(--font-body); font-size: 1rem; font-weight: 500; padding: 0.875rem 2rem; background: #FFFFFF; color: var(--color-primary-deep); border: none; border-radius: 4px; cursor: pointer; transition-timing-function: var(--ease-project);'
+      : 'font-family: var(--font-body); font-size: 1rem; font-weight: 500; padding: 0.875rem 2rem; background: var(--color-primary-dark); color: #FFFFFF; border: none; border-radius: 4px; cursor: pointer; transition-timing-function: var(--ease-project);'
+    }
+  >
+    Kennismaken
+  </button>
+
+  <!-- Privacy note -->
+  <p style={isDark
+    ? 'font-size: 0.64rem; opacity: 0.5; line-height: 1.5;'
+    : 'font-size: 0.64rem; color: var(--color-text-muted); line-height: 1.5;'
+  }>
+    Je gegevens worden niet gedeeld. <a href="/privacy" class="underline underline-offset-2">Privacyverklaring</a>
+  </p>
+</form>
+
+<style>
+  input:focus, textarea:focus {
+    border-color: var(--color-primary-light) !important;
+    background: rgba(255,255,255,0.12) !important;
+  }
+  input::placeholder, textarea::placeholder {
+    color: rgba(255,255,255,0.3);
+  }
+  /* Light variant placeholder override */
+  form:has(button[style*="primary-dark"]) input::placeholder,
+  form:has(button[style*="primary-dark"]) textarea::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.5;
+  }
+</style>

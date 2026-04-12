@@ -1,7 +1,14 @@
 ---
-// Homepage — Coaching voor Zorgprofessionals
-// CONTENT/homepage.md: 7 sections
+/**
+ * Homepage — Coaching voor Zorgprofessionals
+ * 7 sections per DESIGN.md §6 + CONTENT/homepage.md.
+ * All copy from CONTENT/homepage.md (Session 2). All tokens from DESIGN.md.
+ * Layout inspired by homepage-reference.html but built native Astro + Tailwind.
+ */
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CtaSection from '../components/CtaSection.astro';
 ---
 
 <Layout
@@ -9,13 +16,307 @@ import Layout from '../layouts/Layout.astro';
   description="Je hoofd stopt niet na je dienst. Marcel Zoeteman, arts en coach, helpt zorgprofessionals de rust terugvinden. Leer je Monkey Brain temmen. Kennismaken?"
   noindex={true}
 >
+  <Header currentPath="/" />
+
   <main>
-    <!-- Section 1: Hero -->
-    <!-- Section 2: Recognition -->
-    <!-- Section 3: Over Marcel -->
-    <!-- Section 4: Werkwijze -->
-    <!-- Section 5: Voor wie -->
-    <!-- Section 6: Ervaringen -->
-    <!-- Section 7: Contact CTA -->
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 1: HERO
+        bg: #F5F2EE warm off-white + grain + sage gradient
+        py: 10rem desktop / pt-32 pb-20 mobile
+        Craft: grain texture (effects.css), sage gradient overlay
+        Animation: staggered reveal (effects.css hero-line-1/2/sub/cta)
+        ═══════════════════════════════════════════════════════════ */}
+    <section class="grain relative overflow-hidden flex items-center min-h-screen pt-32 pb-20 md:py-40 px-6" style="background-color: var(--color-background);">
+      {/* Sage gradient overlay — DESIGN.md §7 */}
+      <div class="absolute top-0 right-0 w-1/2 h-full pointer-events-none" style="background: radial-gradient(ellipse at 80% 30%, var(--color-primary), transparent 70%); opacity: 0.06;" aria-hidden="true"></div>
+
+      <div class="relative z-10 w-full mx-auto grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-center" style="max-width: var(--w-content);">
+        {/* Text block */}
+        <div style="max-width: var(--w-hero-text);">
+          <h1>
+            <span class="hero-line-1 block" style="font-size: clamp(2.4414rem, 2rem + 1.5vw, 3.0518rem); letter-spacing: -0.025em; line-height: 1.1; color: var(--color-text);">Rationeel vak.</span>
+            <em class="hero-line-2 block" style="font-size: clamp(2.4414rem, 2rem + 1.5vw, 3.0518rem); letter-spacing: -0.025em; line-height: 1.1; color: var(--color-primary-dark); font-style: italic;">Emotioneel brein.</em>
+          </h1>
+
+          <p class="hero-sub mt-6 font-light" style="font-size: 1.25rem; line-height: 1.55; color: var(--color-text-muted); max-width: 30rem;">
+            Voor zorgprofessionals die hun hoofd niet stil krijgen na de dienst. Leer je Monkey Brain herkennen en vind de rust terug.
+          </p>
+
+          <a href="/contact" class="hero-cta inline-block mt-10 font-medium transition-colors duration-300" style="font-family: var(--font-body); font-size: 1rem; font-weight: 500; color: #FFFFFF; background-color: var(--color-primary-dark); padding: 0.875rem 2rem; border-radius: 4px; min-width: 200px; text-align: center; transition-timing-function: var(--ease-project);">
+            Kennismaken
+          </a>
+
+          {/* Credential badge */}
+          <div class="hero-cta mt-6 flex items-center gap-2" style="font-size: 0.8rem; color: var(--color-text-muted);">
+            <span class="block flex-shrink-0" style="width: 24px; height: 1.5px; background-color: var(--color-primary);" aria-hidden="true"></span>
+            Arts &middot; Specialist ouderengeneeskunde &middot; 20+ jaar ervaring
+          </div>
+        </div>
+
+        {/* Portrait photo placeholder */}
+        <div class="w-full max-w-[22rem] md:w-[25rem] md:max-w-none flex items-center justify-center overflow-hidden" style="aspect-ratio: 3/4; background-color: var(--color-primary-light); border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;">
+          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Portretfoto Marcel]</span>
+        </div>
+      </div>
+
+      {/* Answer capsule — SEO, visible as body text */}
+      <div class="absolute bottom-0 left-0 right-0 px-6 pb-6 z-10">
+        <p class="mx-auto text-sm leading-relaxed" style="max-width: var(--w-content); color: var(--color-text-muted); font-size: 0.8rem; opacity: 0.7;">
+          Marcel Zoeteman is arts met meer dan twintig jaar ervaring als specialist ouderengeneeskunde. Hij coacht zorgprofessionals die vastlopen in hun hoofd. In zijn coaching leer je je Monkey Brain herkennen, de oorsprong checken en bewust kiezen voor rust. Vanuit eigen ervaring, niet vanuit een boek.
+        </p>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 2: RECOGNITION ("Herken je dit?")
+        bg: #f0ede8 surface-elevated
+        py: 6rem desktop / 4rem mobile
+        Layout: single column, max-width 40rem centered
+        Craft: left-border thought accents
+        ═══════════════════════════════════════════════════════════ */}
+    <section class="py-16 md:py-24 px-6" style="background-color: var(--color-surface-elevated);">
+      <div class="mx-auto" style="max-width: var(--w-narrow);">
+        <h2 class="mb-8" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em; color: var(--color-text);">
+          Herken je dit?
+        </h2>
+
+        {/* Thought bubbles — DESIGN.md §5 thought bubble styling */}
+        <div class="flex flex-col gap-3">
+          {[
+            '"Heb ik dat wel goed gedaan?"',
+            '"Had ik anders moeten reageren bij die patiënt?"',
+            '"Ik maak thuis de rapportage wel even af."',
+            '"Mijn collega heeft het ook al druk, ik zeg niks."',
+            '"Straks gaat er iets mis en dan is het mijn schuld."',
+          ].map(thought => (
+            <div class="italic leading-snug" style="color: var(--color-text-muted); padding: 0.875rem 1.25rem; border-left: 3px solid var(--color-primary); border-radius: 0 4px 4px 0; background: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.5;">
+              {thought}
+            </div>
+          ))}
+        </div>
+
+        {/* Reframe */}
+        <p class="mt-10" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); line-height: 1.4; color: var(--color-text);">
+          Je Monkey Brain stopt niet als je hem wegduwt.<br />
+          Hij kalmeert als je hem opmerkt.
+        </p>
+
+        {/* Ghost CTA */}
+        <div class="mt-8">
+          <a href="/werkwijze" class="ghost-link">
+            Lees hoe ik werk
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 3: OVER MARCEL
+        bg: #FFFFFF white surface
+        py: 8rem desktop / 4rem mobile
+        Grid: 7fr/5fr asymmetric
+        Craft: editorial photo border (10px #f0ede8), negative margin overlap
+        ═══════════════════════════════════════════════════════════ */}
+    <section class="py-16 md:py-32 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
+        {/* Photo */}
+        <div class="w-full flex items-center justify-center overflow-hidden md:relative md:z-10 md:mb-[-2rem]" style="aspect-ratio: 4/3; background-color: var(--color-primary); border: 10px solid var(--color-surface-elevated); border-radius: 6px;">
+          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Marcel Zoeteman — portretfoto]</span>
+        </div>
+
+        {/* Text */}
+        <div class="flex flex-col justify-center">
+          <span class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+            Over Marcel
+          </span>
+          <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em; color: var(--color-text);">
+            Ik ben het levende bewijs
+          </h2>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Ik ben Marcel Zoeteman, arts en coach. Ruim twintig jaar werk ik in de ouderenzorg. Ik heb van dichtbij gezien hoe het vak verandert. De toenemende druk. De afstand tussen regels en wat patiënten écht nodig hebben.
+          </p>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Tot ik het zelf voelde. Hoge schouders. Oppervlakkige adem. Een hoofd dat maar niet stopte. Ik was moe van goed willen doen.
+          </p>
+          <p class="leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Vanuit die ervaring ben ik me gaan verdiepen in zenmeditatie. Niet als vlucht, maar als manier om terug te keren naar eenvoud en aandacht in het werk.
+          </p>
+          <div class="mt-6 pt-6" style="border-top: 1px solid var(--color-border); font-size: 0.8rem; color: var(--color-text-muted);">
+            Specialist ouderengeneeskunde &middot; Zen-beoefenaar &middot; Coach
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 4: WERKWIJZE ("De Monkey Brain Temmer")
+        bg: #F5F2EE warm off-white
+        py: 7rem desktop / 4rem mobile
+        Layout: editorial vertical sequence
+        Craft: oversized faded step numbers (Lora 3xl, #7C9A8A, opacity 0.3)
+        ═══════════════════════════════════════════════════════════ */}
+    <section class="relative z-0 py-16 md:py-28 px-6" style="background-color: var(--color-background);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          Hoe ik werk
+        </span>
+        <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em; color: var(--color-text);">
+          De Monkey Brain Temmer
+        </h2>
+        <p class="mb-12 leading-relaxed" style="max-width: 55ch; line-height: 1.7; color: var(--color-text-muted);">
+          Je hoofd springt van gedachte naar gedachte. Van de patiënt van vanmiddag naar het MDO van morgen. En intussen de boodschappen, de rapportage, de was. Het stopt niet.
+        </p>
+        <p class="mb-12 leading-relaxed" style="max-width: 55ch; line-height: 1.7; color: var(--color-text-muted); margin-top: -2rem;">
+          Mijn coaching gaat niet over snelle trucs of lijstjes. Het is een manier van kijken. Drie stappen die eenvoudig lijken, maar dieper werken dan je verwacht.
+        </p>
+
+        {/* 3-step sequence — editorial vertical flow */}
+        <div class="flex flex-col gap-12" style="max-width: 48rem;">
+          {/* Step 1 */}
+          <div class="grid grid-cols-[auto_1fr] gap-6 items-start">
+            <span class="pt-[0.15em]" style="font-family: var(--font-heading); font-size: 2.4414rem; font-weight: 400; color: var(--color-primary); opacity: 0.3; line-height: 1;">1</span>
+            <div>
+              <h3 class="mb-2" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">Herkennen</h3>
+              <p class="leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Wanneer je merkt dat je hoofd op hol slaat, stop dan even. Benoem wat er speelt. Niet bestrijden, niet wegduwen. Gewoon opmerken. Dat is al genoeg.
+              </p>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div class="grid grid-cols-[auto_1fr] gap-6 items-start">
+            <span class="pt-[0.15em]" style="font-family: var(--font-heading); font-size: 2.4414rem; font-weight: 400; color: var(--color-primary); opacity: 0.3; line-height: 1;">2</span>
+            <div>
+              <h3 class="mb-2" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">Check de oorsprong</h3>
+              <p class="leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Waar komt die gedachte vandaan? Uit zorgzaamheid voor je patiënt? Of uit druk, perfectionisme, angst om iets te missen? Vaak zit er iets onder wat je niet meteen ziet.
+              </p>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div class="grid grid-cols-[auto_1fr] gap-6 items-start">
+            <span class="pt-[0.15em]" style="font-family: var(--font-heading); font-size: 2.4414rem; font-weight: 400; color: var(--color-primary); opacity: 0.3; line-height: 1;">3</span>
+            <div>
+              <h3 class="mb-2" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">Kies bewust</h3>
+              <p class="leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
+                Kies één gedachte die helpt. Niet door méér te doen, maar door beter te zien. Je hoeft het niet op te lossen. Je hoeft het alleen maar te zien.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Ghost CTA */}
+        <div class="mt-12">
+          <a href="/werkwijze" class="ghost-link">
+            Meer over mijn werkwijze
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 5: VOOR WIE
+        bg: #e8f0eb sage-tinted
+        py: 5rem desktop / 3rem mobile
+        Grid: 8fr/4fr asymmetric (text left, breathing room right)
+        Craft: wave divider SVG at bottom (desktop only)
+        ═══════════════════════════════════════════════════════════ */}
+    <section class="relative overflow-hidden py-12 md:py-20 px-6" style="background-color: var(--color-sage-tint);">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-[8fr_4fr] gap-12" style="max-width: var(--w-content);">
+        <div>
+          <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em; color: var(--color-text);">
+            Dit is voor jou als...
+          </h2>
+
+          {/* Recognition points */}
+          <div class="flex flex-col gap-3.5">
+            {[
+              'Je bent arts of zorgprofessional en merkt dat het werk zwaarder wordt dan je wilt toegeven',
+              'Je voelt dat er iets knelt, maar je kunt het niet goed benoemen',
+              'Je bent moe van goed willen doen en zoekt rust, geen nóg een methode',
+              'Je staat open voor reflectie, meditatie of een andere manier van kijken',
+              'Je wilt weer met aandacht en plezier je vak uitoefenen',
+            ].map(item => (
+              <div class="flex items-baseline gap-3 leading-relaxed" style="line-height: 1.6;">
+                <span class="block flex-shrink-0 mt-[0.55em] rounded-full" style="width: 6px; height: 6px; background-color: var(--color-primary);" aria-hidden="true"></span>
+                {item}
+              </div>
+            ))}
+          </div>
+
+          {/* Not for you */}
+          <div class="mt-8">
+            <h3 class="mb-4 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.8rem; color: var(--color-text-muted); letter-spacing: 0.05em;">
+              Dit is niet voor jou als...
+            </h3>
+            <p style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.7; max-width: 55ch;">
+              Je zoekt een snelle oplossing, een certificaat of een standaard traject met voorspelbare stappen. Mijn coaching vraagt openheid, eerlijkheid en de bereidheid om écht stil te staan bij wat er speelt.
+            </p>
+          </div>
+        </div>
+
+        {/* Right column — intentionally empty (asymmetric breathing room) */}
+        <div></div>
+      </div>
+
+      {/* Wave divider SVG — DESIGN.md §7, desktop only */}
+      <svg class="absolute bottom-0 left-0 w-full hidden md:block" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true" style="height: 40px;">
+        <path d="M0,40 C240,70 480,10 720,40 C960,70 1200,10 1440,40 L1440,80 L0,80 Z" fill="var(--color-surface)"/>
+      </svg>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 6: ERVARINGEN (placeholder)
+        bg: #FFFFFF white surface
+        py: 6rem desktop / 4rem mobile
+        Layout: single column, max-width 40rem centered
+        Craft: decorative quote mark (Lora 4rem, #7C9A8A, opacity 0.15)
+        ═══════════════════════════════════════════════════════════ */}
+    <section class="py-16 md:py-24 px-6 text-center" style="background-color: var(--color-surface);">
+      <div class="mx-auto" style="max-width: var(--w-narrow);">
+        <h2 class="mb-8" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em; color: var(--color-text);">
+          Ervaringen
+        </h2>
+
+        {/* Decorative quote mark — DESIGN.md §7 */}
+        <div aria-hidden="true" style="font-family: var(--font-heading); font-size: 4rem; line-height: 1; color: var(--color-primary); opacity: 0.15; margin-bottom: 0.5rem;">
+          &ldquo;
+        </div>
+
+        <p class="italic mb-8" style="font-size: 1.25rem; line-height: 1.6; color: var(--color-text-muted);">
+          Binnenkort verschijnen hier ervaringen van zorgprofessionals die het traject hebben doorlopen.
+        </p>
+
+        {/* Invitation note */}
+        <div class="text-left leading-relaxed" style="padding: 1.5rem; background-color: var(--color-surface-elevated); border-radius: 6px; font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6;">
+          Ik ben op zoek naar artsen en zorgprofessionals die openstaan voor een vrijblijvend kennismakingsgesprek. Herken je de gedachten hierboven? Neem gerust contact op.
+          <div class="mt-4">
+            <a href="/contact" class="ghost-link" style="border-bottom-color: var(--color-primary-dark);">
+              Neem contact op
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 7: CONTACT CTA
+        bg: #314c3f deep sage (dark anchor)
+        py: 8rem desktop / 4rem mobile
+        Grid: 5fr/7fr asymmetric
+        ═══════════════════════════════════════════════════════════ */}
+    <CtaSection
+      heading="Herken je dit?"
+      subtitle="Laten we praten."
+      body="Een eerste gesprek is vrijblijvend en geeft je de ruimte om te ontdekken of dit bij je past."
+      email="info@serenitas.me"
+      showForm={true}
+    />
   </main>
+
+  <Footer />
 </Layout>

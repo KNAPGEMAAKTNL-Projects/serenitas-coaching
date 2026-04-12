@@ -1,0 +1,144 @@
+---
+/**
+ * Header — Fixed navigation with scroll-transparent behavior.
+ * DESIGN.md §5 (nav CTA), §6 (nav container 80rem), §8 (Lucide icons), §10 (underline hover).
+ * Copy: CONTENT/homepage.md Nav table.
+ * JS budget: ~0.5KB inline for scroll detection + mobile toggle.
+ */
+interface Props {
+  /** Current page path for active state */
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const navLinks = [
+  { href: '/over-marcel', label: 'Over Marcel' },
+  { href: '/werkwijze', label: 'Hoe ik werk' },
+  { href: '/voor-wie', label: 'Voor wie' },
+  { href: '/ervaringen', label: 'Ervaringen' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<nav
+  id="nav"
+  class="fixed top-0 left-0 right-0 z-50 px-6 py-5 transition-all duration-300"
+  style="transition-timing-function: var(--ease-project);"
+>
+  <div class="mx-auto flex items-center justify-between" style="max-width: var(--w-nav);">
+    <!-- Brand -->
+    <a href="/" class="text-text no-underline" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em;">
+      Serenitas
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'nav-link text-text-muted text-sm transition-colors duration-300',
+              { 'text-text': currentPath === link.href }
+            ]}
+            style="font-size: 0.8rem; transition-timing-function: var(--ease-project);"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href="/contact"
+          class="inline-block text-surface bg-primary-dark px-5 py-2 rounded-sm text-sm font-medium transition-colors duration-300 hover:bg-primary-deep"
+          style="font-size: 0.8rem; border-radius: 4px; transition-timing-function: var(--ease-project);"
+        >
+          Kennismaken
+        </a>
+      </li>
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-toggle"
+      class="flex md:hidden flex-col gap-[5px] w-6 cursor-pointer bg-transparent border-none p-0"
+      aria-label="Menu openen"
+      aria-expanded="false"
+    >
+      <span class="block h-[2px] w-full bg-text rounded-sm"></span>
+      <span class="block h-[2px] w-full bg-text rounded-sm"></span>
+      <span class="block h-[2px] w-[70%] bg-text rounded-sm"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu panel (slide-down, not overlay) -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden mt-4 pb-4"
+  >
+    <ul class="flex flex-col gap-3">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class="block text-text-muted py-1"
+            style="font-size: 0.8rem;"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-2">
+        <a
+          href="/contact"
+          class="inline-block text-surface bg-primary-dark px-5 py-2 rounded-sm text-sm font-medium"
+          style="font-size: 0.8rem; border-radius: 4px;"
+        >
+          Kennismaken
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script is:inline>
+// Nav scroll behavior: transparent → white with border
+// Nav mobile toggle: show/hide menu panel
+(function() {
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  // Scroll detection
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        if (window.scrollY > 40) {
+          nav.style.background = 'rgba(255,255,255,0.95)';
+          nav.style.backdropFilter = 'blur(8px)';
+          nav.style.boxShadow = '0 1px 0 var(--color-border)';
+        } else {
+          nav.style.background = 'transparent';
+          nav.style.backdropFilter = 'none';
+          nav.style.boxShadow = 'none';
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile toggle
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('hidden');
+    });
+  }
+})();
+</script>

@@ -1,0 +1,49 @@
+---
+/**
+ * CtaSection — Reusable call-to-action block (deep sage background).
+ * Used on homepage (Section 7) and bottom of all subpages.
+ * DESIGN.md §12 (CTA architecture), §6 (5fr/7fr grid).
+ */
+import ContactForm from './ContactForm.astro';
+
+interface Props {
+  heading?: string;
+  subtitle?: string;
+  body?: string;
+  email?: string;
+  /** Show the contact form alongside text */
+  showForm?: boolean;
+}
+
+const {
+  heading = 'Herken je dit?',
+  subtitle = 'Laten we praten.',
+  body = 'Een eerste gesprek is vrijblijvend en geeft je de ruimte om te ontdekken of dit bij je past.',
+  email = 'info@serenitas.me',
+  showForm = true,
+} = Astro.props;
+---
+
+<section class="px-6 py-16 md:py-32" style="background-color: var(--color-primary-deep); color: #FFFFFF;">
+  <div class="mx-auto grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-20" style="max-width: var(--w-content);">
+    <!-- Text column -->
+    <div class="flex flex-col justify-center">
+      <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em; line-height: 1.25; color: #FFFFFF;">
+        {heading}
+      </h2>
+      <p class="mb-6 font-light" style="font-size: 1.25rem; line-height: 1.6; opacity: 0.8; max-width: 28rem;">
+        {subtitle} {body}
+      </p>
+      <span style="font-size: 0.8rem; opacity: 0.6;">
+        {email}
+      </span>
+    </div>
+
+    <!-- Form column -->
+    {showForm && (
+      <div>
+        <ContactForm variant="dark" />
+      </div>
+    )}
+  </div>
+</section>
