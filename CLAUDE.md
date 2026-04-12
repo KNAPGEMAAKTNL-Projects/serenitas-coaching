@@ -38,4 +38,29 @@ This is the language ALL website copy is written in. It also determines which la
 - NEVER symmetrize asymmetric layouts from the reference design
 
 ## Design Context
-[POPULATED BY /teach-impeccable IN PROMPT 5 — left empty during setup]
+
+### Target Audience
+Dutch healthcare professionals (artsen, zorgprofessionals) experiencing burnout or loss of meaning. Evidence-minded, skeptical of "woo-woo", value credibility. Browsing during quiet reflective moments.
+
+### Brand Personality
+Calm. Authentic. Grounded.
+
+### Emotional Goal
+"Like a weight has been lifted off their shoulders" — relief, recognition, permission to pause.
+
+### Aesthetic Direction
+Warm sage green (#7C9A8A), light-dominant, muted-earthy. Lora + IBM Plex Sans. Spacious, organic, editorial. Animation 2/10 — stillness is the brand.
+
+### Anti-References
+- No clinical blue (every healthcare competitor does this)
+- No corporate/institutional feel (he's one person)
+- No WordPress template aesthetic
+- No visual clutter, aggressive CTAs, stock photography
+- No dense information grids or auto-playing media
+
+### Design Principles
+1. Stillness is the differentiator — calm is radical
+2. The person IS the brand — Marcel's face, voice, story visible within seconds
+3. Recognition before invitation — empathy precedes action
+4. Credibility through substance — physician credentials + own frameworks, not decoration
+5. Every element earns its place — 5-7 pages, ~5KB JS, sub-2s load
