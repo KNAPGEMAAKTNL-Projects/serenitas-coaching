@@ -1,0 +1,24 @@
+{
+  "name": "serenitas-coaching",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:cf": "astro build && node scripts/fix-pages-config.mjs",
+    "preview": "astro preview",
+    "deploy": "astro build && node scripts/fix-pages-config.mjs && wrangler deploy",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/cloudflare": "^13.1.8",
+    "@astrojs/sitemap": "^3.7.2",
+    "@lucide/astro": "^1.8.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.5",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.81.1"
+  }
+}

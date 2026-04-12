@@ -1,0 +1,93 @@
+/* ── Effects ── Animation level 2/10 ── CSS only ────────────────── */
+
+/* ── Reduced Motion: blanket disable ── */
+/* DESIGN.md §11: 0KB JS animation budget. Everything is CSS. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Hero Staggered Reveal ── */
+/* DESIGN.md §10: signature interaction, homepage hero only */
+/* 4 elements with 0.6s stagger delay */
+.hero-line-1 {
+  animation: gentle-appear 0.8s var(--ease-project) both;
+}
+
+.hero-line-2 {
+  animation: gentle-appear 0.8s var(--ease-project) 0.6s both;
+}
+
+.hero-sub {
+  animation: gentle-appear 0.8s var(--ease-project) 1.0s both;
+}
+
+.hero-cta {
+  animation: gentle-appear 0.8s var(--ease-project) 1.3s both;
+}
+
+/* ── Nav Link Underline ── */
+/* DESIGN.md §10: hover pattern, underline-from-left */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-primary);
+  transition: width 0.3s var(--ease-project);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Ghost Button Arrow ── */
+/* DESIGN.md §5: arrow translateX(3px) + border-bottom-color on hover */
+.ghost-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary-dark);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 0.625rem 0;
+  border-bottom: 1.5px solid transparent;
+  transition: border-bottom-color 0.3s var(--ease-project);
+}
+
+.ghost-link:hover {
+  border-bottom-color: var(--color-primary-dark);
+}
+
+.ghost-link svg {
+  transition: transform 0.3s var(--ease-project);
+}
+
+.ghost-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Grain Texture ── */
+/* DESIGN.md §7: hero background grain at 3% opacity */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 0;
+}

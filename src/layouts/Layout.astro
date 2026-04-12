@@ -1,0 +1,48 @@
+---
+import { Font } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import '../styles/effects.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = 'Coaching voor zorgprofessionals die hun hoofd niet stil krijgen na de dienst.',
+  noindex = false,
+} = Astro.props;
+
+// Strip trailing index.html for clean canonical URLs
+const pathname = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+const canonicalURL = new URL(pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Fonts: self-hosted at build time via Astro Fonts API -->
+    <Font cssVariable="--font-heading" preload />
+    <Font cssVariable="--font-body" preload />
+
+    <!-- ClientRouter for smooth page transitions -->
+    <ClientRouter />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
