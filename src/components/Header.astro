@@ -69,9 +69,9 @@ const navLinks = [
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <span class="block h-[2px] w-6 rounded-sm transition-transform duration-300" style="background-color: var(--color-text); transition-timing-function: var(--ease-project);"></span>
-      <span class="block h-[2px] w-6 rounded-sm transition-opacity duration-300" style="background-color: var(--color-text); transition-timing-function: var(--ease-project);"></span>
-      <span class="block h-[2px] w-[70%] rounded-sm transition-transform duration-300" style="background-color: var(--color-text); max-width: 1.05rem; transition-timing-function: var(--ease-project);"></span>
+      <span class="hamburger-bar block h-[2px] w-6 rounded-sm transition-all duration-300 origin-center" style="background-color: var(--color-text); transition-timing-function: var(--ease-project);"></span>
+      <span class="hamburger-bar block h-[2px] w-6 rounded-sm transition-all duration-300" style="background-color: var(--color-text); transition-timing-function: var(--ease-project);"></span>
+      <span class="hamburger-bar block h-[2px] w-6 rounded-sm transition-all duration-300 origin-center" style="background-color: var(--color-text); transition-timing-function: var(--ease-project);"></span>
     </button>
   </div>
 
@@ -138,15 +138,27 @@ const navLinks = [
 
     // ── Mobile toggle ──
     if (toggle && menu) {
+      const bars = toggle.querySelectorAll('.hamburger-bar') as NodeListOf<HTMLElement>;
+
       function closeMenu() {
         menu.classList.add('hidden');
         toggle.setAttribute('aria-expanded', 'false');
-        updateNav(); // Restore scroll-based background
+        toggle.setAttribute('aria-label', 'Menu openen');
+        // Reset bars
+        if (bars[0]) { bars[0].style.transform = 'none'; bars[0].style.width = '1.5rem'; }
+        if (bars[1]) { bars[1].style.opacity = '1'; bars[1].style.transform = 'none'; }
+        if (bars[2]) { bars[2].style.transform = 'none'; bars[2].style.width = '1.5rem'; }
+        updateNav();
       }
 
       function openMenu() {
         menu.classList.remove('hidden');
         toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Menu sluiten');
+        // Animate bars to X
+        if (bars[0]) { bars[0].style.transform = 'translateY(7px) rotate(45deg)'; bars[0].style.width = '1.5rem'; }
+        if (bars[1]) { bars[1].style.opacity = '0'; bars[1].style.transform = 'scaleX(0)'; }
+        if (bars[2]) { bars[2].style.transform = 'translateY(-7px) rotate(-45deg)'; bars[2].style.width = '1.5rem'; }
         // Force solid background when menu is open
         nav.style.background = 'rgba(255,255,255,0.98)';
         nav.style.backdropFilter = 'blur(8px)';
