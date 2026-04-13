@@ -1,17 +1,67 @@
 ---
 /**
- * Footer — Copyright, legal links, contact.
- * DESIGN.md §16 (legal footer requirements), CONTENT/homepage.md Footer section.
- * Uses middot separator (F-005/F-008: zero dashes).
+ * Footer — Nav links, contact info, legal links, business details.
+ * DESIGN.md §16 (legal footer), CONTENT/homepage.md Footer section.
+ * Zero dashes (F-005/F-008): uses middot separator.
  */
+const year = new Date().getFullYear();
 ---
 
-<footer class="py-10 px-6" style="background-color: var(--color-text); color: rgba(255,255,255,0.5);">
-  <div class="mx-auto flex flex-col gap-4 items-center text-center md:flex-row md:justify-between md:text-left" style="max-width: var(--w-content); font-size: 0.64rem;">
-    <span>&copy; 2026 Serenitas Coaching &middot; Marcel Zoeteman</span>
-    <div class="flex gap-6">
-      <a href="/privacy" class="transition-colors duration-300 hover:text-white/80" style="color: rgba(255,255,255,0.5); transition-timing-function: var(--ease-project);">Privacy</a>
-      <a href="/contact" class="transition-colors duration-300 hover:text-white/80" style="color: rgba(255,255,255,0.5); transition-timing-function: var(--ease-project);">Contact</a>
+<footer class="py-12 md:py-16 px-6" style="background-color: var(--color-text);">
+  <div class="mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
+
+    {/* Column 1: Brand + contact */}
+    <div>
+      <span class="block mb-4" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 500; color: rgba(255,255,255,0.9);">
+        Serenitas
+      </span>
+      <p class="mb-4" style="font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 30ch;">
+        Coaching voor artsen en zorgprofessionals die hun hoofd niet stil krijgen na de dienst.
+      </p>
+      <div class="flex flex-col gap-1" style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">
+        <a href="mailto:info@serenitas.me" class="transition-colors duration-300 hover:text-white/80" style="color: rgba(255,255,255,0.5);">info@serenitas.me</a>
+        <span>Emmen</span>
+      </div>
+    </div>
+
+    {/* Column 2: Pagina's */}
+    <div>
+      <span class="block mb-4 font-medium uppercase" style="font-size: 0.64rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3);">
+        Pagina's
+      </span>
+      <ul class="flex flex-col gap-2" style="font-size: 0.8rem;">
+        <li><a href="/over-marcel" class="transition-colors duration-300" style="color: rgba(255,255,255,0.5);">Over Marcel</a></li>
+        <li><a href="/werkwijze" class="transition-colors duration-300" style="color: rgba(255,255,255,0.5);">Hoe ik werk</a></li>
+        <li><a href="/voor-wie" class="transition-colors duration-300" style="color: rgba(255,255,255,0.5);">Voor wie</a></li>
+        <li><a href="/ervaringen" class="transition-colors duration-300" style="color: rgba(255,255,255,0.5);">Ervaringen</a></li>
+        <li><a href="/veelgestelde-vragen" class="transition-colors duration-300" style="color: rgba(255,255,255,0.5);">Veelgestelde vragen</a></li>
+        <li><a href="/contact" class="transition-colors duration-300" style="color: rgba(255,255,255,0.5);">Contact</a></li>
+      </ul>
+    </div>
+
+    {/* Column 3: Juridisch */}
+    <div>
+      <span class="block mb-4 font-medium uppercase" style="font-size: 0.64rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3);">
+        Juridisch
+      </span>
+      <ul class="flex flex-col gap-2" style="font-size: 0.8rem;">
+        <li><a href="/privacy" class="transition-colors duration-300" style="color: rgba(255,255,255,0.5);">Privacyverklaring</a></li>
+      </ul>
+      <div class="mt-6 flex flex-col gap-1" style="font-size: 0.64rem; color: rgba(255,255,255,0.3);">
+        <span>KvK: [KvK-nummer]</span>
+      </div>
     </div>
   </div>
+
+  {/* Bottom bar */}
+  <div class="mx-auto mt-10 pt-6 flex flex-col md:flex-row md:justify-between gap-2 items-center" style="max-width: var(--w-content); border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.64rem; color: rgba(255,255,255,0.3);">
+    <span>&copy; {year} Serenitas Coaching &middot; Marcel Zoeteman</span>
+    <span>Coaching voor zorgprofessionals</span>
+  </div>
 </footer>
+
+<style>
+  footer a:hover {
+    color: rgba(255,255,255,0.8) !important;
+  }
+</style>

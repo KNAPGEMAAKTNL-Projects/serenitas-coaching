@@ -1,27 +1,23 @@
 ---
 /**
  * ContactForm — 3-field form (naam, e-mail, bericht) + Turnstile placeholder.
- * DESIGN.md §5 (form field styles), §12 (CTA: "Kennismaken", never "Versturen").
- * CONTENT/homepage.md Section 7 form table.
- * Dark variant (on deep sage background) is the default.
+ * DESIGN.md §5 (form styles), §12 (CTA: "Kennismaken", 3 fields only, no phone).
+ * Includes: client-side validation, loading state, success/error messages.
  */
 interface Props {
-  /** Form action URL (Cloudflare Worker endpoint) */
   action?: string;
-  /** Light variant for use on white/light backgrounds */
   variant?: 'dark' | 'light';
 }
 
 const { action = '#', variant = 'dark' } = Astro.props;
-
 const isDark = variant === 'dark';
 ---
 
-<form action={action} method="post" class="flex flex-col gap-4">
+<form action={action} method="post" class="contact-form flex flex-col gap-4" novalidate>
   <!-- Naam -->
   <div class="flex flex-col gap-1.5">
-    <label for="naam" class="text-sm font-medium" style={isDark ? 'font-size: 0.8rem; opacity: 0.7;' : 'font-size: 0.8rem; color: var(--color-text-muted);'}>
-      Naam
+    <label for="naam" class="font-medium" style={`font-size: 0.8rem; ${isDark ? 'opacity: 0.7;' : 'color: var(--color-text-muted);'}`}>
+      Naam <span class="text-error" aria-hidden="true">*</span>
     </label>
     <input
       type="text"
@@ -30,18 +26,16 @@ const isDark = variant === 'dark';
       placeholder="Je naam"
       required
       autocomplete="name"
-      class="outline-none transition-all duration-300"
-      style={isDark
-        ? 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #FFFFFF; transition-timing-function: var(--ease-project);'
-        : 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-text); transition-timing-function: var(--ease-project);'
-      }
+      class="form-input outline-none transition-all duration-300"
+      data-variant={variant}
     />
+    <span class="form-error hidden" style="font-size: 0.7rem; color: var(--color-error);" role="alert"></span>
   </div>
 
   <!-- E-mail -->
   <div class="flex flex-col gap-1.5">
-    <label for="email" class="text-sm font-medium" style={isDark ? 'font-size: 0.8rem; opacity: 0.7;' : 'font-size: 0.8rem; color: var(--color-text-muted);'}>
-      E-mail
+    <label for="email" class="font-medium" style={`font-size: 0.8rem; ${isDark ? 'opacity: 0.7;' : 'color: var(--color-text-muted);'}`}>
+      E-mail <span class="text-error" aria-hidden="true">*</span>
     </label>
     <input
       type="email"
@@ -50,17 +44,15 @@ const isDark = variant === 'dark';
       placeholder="je@voorbeeld.nl"
       required
       autocomplete="email"
-      class="outline-none transition-all duration-300"
-      style={isDark
-        ? 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #FFFFFF; transition-timing-function: var(--ease-project);'
-        : 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-text); transition-timing-function: var(--ease-project);'
-      }
+      class="form-input outline-none transition-all duration-300"
+      data-variant={variant}
     />
+    <span class="form-error hidden" style="font-size: 0.7rem; color: var(--color-error);" role="alert"></span>
   </div>
 
   <!-- Bericht -->
   <div class="flex flex-col gap-1.5">
-    <label for="bericht" class="text-sm font-medium" style={isDark ? 'font-size: 0.8rem; opacity: 0.7;' : 'font-size: 0.8rem; color: var(--color-text-muted);'}>
+    <label for="bericht" class="font-medium" style={`font-size: 0.8rem; ${isDark ? 'opacity: 0.7;' : 'color: var(--color-text-muted);'}`}>
       Bericht
     </label>
     <textarea
@@ -68,55 +60,141 @@ const isDark = variant === 'dark';
       name="bericht"
       placeholder="Wat houdt je bezig?"
       rows="4"
-      class="outline-none transition-all duration-300 resize-y"
-      style={isDark
-        ? 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #FFFFFF; min-height: 6rem; transition-timing-function: var(--ease-project);'
-        : 'font-family: var(--font-body); font-size: 1rem; padding: 0.75rem 1rem; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-text); min-height: 6rem; transition-timing-function: var(--ease-project);'
-      }
+      class="form-input outline-none transition-all duration-300 resize-y"
+      data-variant={variant}
+      style="min-height: 6rem;"
     ></textarea>
   </div>
 
-  <!-- Honeypot (spam protection) -->
+  <!-- Honeypot -->
   <div style="position: absolute; left: -9999px;" aria-hidden="true">
     <input type="text" name="website" tabindex="-1" autocomplete="off" />
   </div>
 
-  <!-- Turnstile placeholder — add widget when CF Worker is configured -->
-  <!-- <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY"></div> -->
+  <!-- Turnstile placeholder -->
+  <div class="cf-turnstile" data-sitekey="PLACEHOLDER"></div>
 
   <!-- Submit -->
   <button
     type="submit"
-    class="w-full text-center font-medium transition-colors duration-300"
+    class="form-submit w-full text-center font-medium transition-colors duration-300"
     style={isDark
-      ? 'font-family: var(--font-body); font-size: 1rem; font-weight: 500; padding: 0.875rem 2rem; background: #FFFFFF; color: var(--color-primary-deep); border: none; border-radius: 4px; cursor: pointer; transition-timing-function: var(--ease-project);'
-      : 'font-family: var(--font-body); font-size: 1rem; font-weight: 500; padding: 0.875rem 2rem; background: var(--color-primary-dark); color: #FFFFFF; border: none; border-radius: 4px; cursor: pointer; transition-timing-function: var(--ease-project);'
+      ? 'font-family: var(--font-body); font-size: 1rem; font-weight: 500; padding: 0.875rem 2rem; background: #FFFFFF; color: var(--color-primary-deep); border: none; border-radius: 4px; cursor: pointer; min-height: 44px; transition-timing-function: var(--ease-project);'
+      : 'font-family: var(--font-body); font-size: 1rem; font-weight: 500; padding: 0.875rem 2rem; background: var(--color-primary-dark); color: #FFFFFF; border: none; border-radius: 4px; cursor: pointer; min-height: 44px; transition-timing-function: var(--ease-project);'
     }
   >
-    Kennismaken
+    <span class="form-submit-text">Kennismaken</span>
+    <span class="form-submit-loading hidden">Versturen...</span>
   </button>
 
+  <!-- Success/error messages -->
+  <div class="form-success hidden p-4 text-center" style="background: var(--color-sage-tint); border-radius: 4px; color: var(--color-primary-dark); font-size: 0.875rem;" role="status">
+    Bedankt voor je bericht. Marcel neemt zo snel mogelijk contact met je op.
+  </div>
+  <div class="form-error-msg hidden p-4 text-center" style="background: #fef2f2; border-radius: 4px; color: var(--color-error); font-size: 0.875rem;" role="alert">
+    Er ging iets mis. Probeer het opnieuw of mail naar info@serenitas.me.
+  </div>
+
   <!-- Privacy note -->
-  <p style={isDark
-    ? 'font-size: 0.64rem; opacity: 0.5; line-height: 1.5;'
-    : 'font-size: 0.64rem; color: var(--color-text-muted); line-height: 1.5;'
-  }>
-    Je gegevens worden niet gedeeld. <a href="/privacy" class="underline underline-offset-2">Privacyverklaring</a>
+  <p style={`font-size: 0.64rem; line-height: 1.5; ${isDark ? 'opacity: 0.5;' : 'color: var(--color-text-muted);'}`}>
+    Je gegevens worden niet gedeeld met derden. Lees onze <a href="/privacy" class="underline underline-offset-2">privacyverklaring</a>.
   </p>
 </form>
 
 <style>
-  input:focus, textarea:focus {
-    border-color: var(--color-primary-light) !important;
-    background: rgba(255,255,255,0.12) !important;
+  .form-input[data-variant="dark"] {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    color: #FFFFFF;
+    transition-timing-function: var(--ease-project);
   }
-  input::placeholder, textarea::placeholder {
+  .form-input[data-variant="dark"]::placeholder {
     color: rgba(255,255,255,0.3);
   }
-  /* Light variant placeholder override */
-  form:has(button[style*="primary-dark"]) input::placeholder,
-  form:has(button[style*="primary-dark"]) textarea::placeholder {
+  .form-input[data-variant="dark"]:focus {
+    border-color: var(--color-primary-light);
+    background: rgba(255,255,255,0.12);
+  }
+  .form-input[data-variant="light"] {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text);
+    transition-timing-function: var(--ease-project);
+  }
+  .form-input[data-variant="light"]::placeholder {
     color: var(--color-text-muted);
     opacity: 0.5;
   }
+  .form-input[data-variant="light"]:focus {
+    border-color: var(--color-primary);
+  }
+  .form-input.invalid {
+    border-color: var(--color-error) !important;
+  }
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('.contact-form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const f = e.target as HTMLFormElement;
+        let valid = true;
+
+        // Validate required fields
+        f.querySelectorAll('[required]').forEach(input => {
+          const el = input as HTMLInputElement;
+          const errorSpan = el.parentElement?.querySelector('.form-error') as HTMLElement;
+          el.classList.remove('invalid');
+          if (errorSpan) { errorSpan.classList.add('hidden'); errorSpan.textContent = ''; }
+
+          if (!el.value.trim()) {
+            el.classList.add('invalid');
+            if (errorSpan) { errorSpan.textContent = 'Dit veld is verplicht'; errorSpan.classList.remove('hidden'); }
+            valid = false;
+          } else if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) {
+            el.classList.add('invalid');
+            if (errorSpan) { errorSpan.textContent = 'Voer een geldig e-mailadres in'; errorSpan.classList.remove('hidden'); }
+            valid = false;
+          }
+        });
+
+        if (!valid) return;
+
+        // Loading state
+        const btn = f.querySelector('.form-submit') as HTMLButtonElement;
+        const btnText = f.querySelector('.form-submit-text') as HTMLElement;
+        const btnLoading = f.querySelector('.form-submit-loading') as HTMLElement;
+        btn.disabled = true;
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+
+        // Simulate submission (replace with actual fetch to CF Worker)
+        setTimeout(() => {
+          btn.disabled = false;
+          btnText.classList.remove('hidden');
+          btnLoading.classList.add('hidden');
+
+          const success = f.querySelector('.form-success') as HTMLElement;
+          success.classList.remove('hidden');
+          f.reset();
+
+          // Hide success after 5s
+          setTimeout(() => success.classList.add('hidden'), 5000);
+        }, 1000);
+      });
+    });
+  });
+</script>

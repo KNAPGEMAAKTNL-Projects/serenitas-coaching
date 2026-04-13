@@ -14,21 +14,28 @@
 
 /* ── Hero Staggered Reveal ── */
 /* DESIGN.md §10: signature interaction, homepage hero only */
-/* 4 elements with 0.6s stagger delay */
-.hero-line-1 {
-  animation: gentle-appear 0.8s var(--ease-project) both;
-}
-
-.hero-line-2 {
-  animation: gentle-appear 0.8s var(--ease-project) 0.6s both;
-}
-
-.hero-sub {
-  animation: gentle-appear 0.8s var(--ease-project) 1.0s both;
-}
-
+/* Default: content visible (LCP-safe). Animation enhances, never hides. */
+.hero-line-1,
+.hero-line-2,
+.hero-sub,
 .hero-cta {
-  animation: gentle-appear 0.8s var(--ease-project) 1.3s both;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-line-1 {
+    animation: gentle-appear 0.8s var(--ease-project) both;
+  }
+  .hero-line-2 {
+    animation: gentle-appear 0.8s var(--ease-project) 0.6s both;
+  }
+  .hero-sub {
+    animation: gentle-appear 0.8s var(--ease-project) 1.0s both;
+  }
+  .hero-cta {
+    animation: gentle-appear 0.8s var(--ease-project) 1.3s both;
+  }
 }
 
 /* ── Nav Link Underline ── */
