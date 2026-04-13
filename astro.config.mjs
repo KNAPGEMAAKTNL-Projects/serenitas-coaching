@@ -21,7 +21,10 @@ export default defineConfig({
   // }),
 
   // ── Security ──────────────────────────────────────────
-  security: { csp: true },
+  // CSP disabled: Astro's CSP implementation hashes <style> blocks but
+  // cannot handle style="" attributes. This site uses inline styles
+  // extensively for design tokens. Re-evaluate if migrating to class-only.
+  // security: { csp: true },
 
   // ── Fonts (self-hosted at build time, GDPR-compliant) ─
   fonts: [
