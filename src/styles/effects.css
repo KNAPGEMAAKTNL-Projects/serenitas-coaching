@@ -48,8 +48,10 @@
   transition: width 0.3s var(--ease-project);
 }
 
-.nav-link:hover::after {
-  width: 100%;
+@media (hover: hover) {
+  .nav-link:hover::after {
+    width: 100%;
+  }
 }
 
 /* ── Ghost Button Arrow ── */
@@ -67,16 +69,18 @@
   transition: border-bottom-color 0.3s var(--ease-project);
 }
 
-.ghost-link:hover {
-  border-bottom-color: var(--color-primary-dark);
+@media (hover: hover) {
+  .ghost-link:hover {
+    border-bottom-color: var(--color-primary-dark);
+  }
+
+  .ghost-link:hover svg {
+    transform: translateX(3px);
+  }
 }
 
 .ghost-link svg {
   transition: transform 0.3s var(--ease-project);
-}
-
-.ghost-link:hover svg {
-  transform: translateX(3px);
 }
 
 /* ── Grain Texture ── */
