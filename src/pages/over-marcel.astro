@@ -4,11 +4,15 @@
  * CONTENT/over-marcel.md: 7 sections
  * Layout inspired by over-marcel-reference.html
  */
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaSection from '../components/CtaSection.astro';
+import marcelBoom from '../assets/marcel-bij-de-boom.jpeg';
+import marcelBoomstam from '../assets/marcel-op-boomstam.jpeg';
+import marcelWandelend from '../assets/marcel-wandelend.jpeg';
 ---
 
 <Layout
@@ -30,8 +34,16 @@ import CtaSection from '../components/CtaSection.astro';
     {/* Section 2: Portret en introductie — 5fr/7fr asymmetric */}
     <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface-elevated);">
       <div class="mx-auto grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
-        <div class="w-full flex items-center justify-center overflow-hidden" style="aspect-ratio: 3/4; background-color: var(--color-primary); border: 10px solid #FFFFFF; border-radius: 6px;">
-          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Portretfoto Marcel]</span>
+        <div class="w-full overflow-hidden" style="aspect-ratio: 3/4; border: 10px solid #FFFFFF; border-radius: 6px;">
+          <Image
+            src={marcelBoom}
+            alt="Marcel Zoeteman leunend tegen een boom"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 768px) 100vw, 42vw"
+            class="w-full h-full object-cover"
+            quality={80}
+            loading="eager"
+          />
         </div>
         <div class="flex flex-col justify-center">
           <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
@@ -86,8 +98,15 @@ import CtaSection from '../components/CtaSection.astro';
     {/* Section 4: Wandelgesprek — 7fr/5fr asymmetric */}
     <section class="py-12 md:py-24 px-6" style="background-color: var(--color-background);">
       <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
-        <div class="w-full flex items-center justify-center overflow-hidden" style="aspect-ratio: 16/10; background-color: var(--color-primary-light); border-radius: 6px;">
-          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Marcel wandelend in natuur]</span>
+        <div class="w-full overflow-hidden" style="aspect-ratio: 16/10; border-radius: 6px;">
+          <Image
+            src={marcelWandelend}
+            alt="Marcel wandelend in een open veld"
+            widths={[500, 800, 1100]}
+            sizes="(max-width: 768px) 100vw, 58vw"
+            class="w-full h-full object-cover"
+            quality={80}
+          />
         </div>
         <div class="flex flex-col justify-center">
           <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
@@ -144,8 +163,15 @@ import CtaSection from '../components/CtaSection.astro';
     {/* Section 6: Natuur en citaat */}
     <section class="py-16 md:py-24 px-6" style="background-color: var(--color-surface);">
       <div class="mx-auto" style="max-width: var(--w-content);">
-        <div class="w-full flex items-center justify-center overflow-hidden mb-12" style="aspect-ratio: 21/9; background-color: var(--color-surface-elevated); border-radius: 6px;">
-          <span class="text-xs font-medium uppercase tracking-widest" style="color: var(--color-text-muted);">[Panoramafoto natuur, bospad]</span>
+        <div class="w-full overflow-hidden mb-12" style="aspect-ratio: 21/9; border-radius: 6px;">
+          <Image
+            src={marcelBoomstam}
+            alt="Marcel wandelend over een boomstam in het bos"
+            widths={[800, 1200, 1600]}
+            sizes="(max-width: 768px) 100vw, 68.75rem"
+            class="w-full h-full object-cover object-[center_40%]"
+            quality={80}
+          />
         </div>
         <blockquote class="mx-auto text-center" style="max-width: var(--w-narrow);">
           <p class="italic" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); line-height: 1.4; color: var(--color-text);">

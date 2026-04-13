@@ -5,10 +5,13 @@
  * All copy from CONTENT/homepage.md (Session 2). All tokens from DESIGN.md.
  * Layout inspired by homepage-reference.html but built native Astro + Tailwind.
  */
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CtaSection from '../components/CtaSection.astro';
+import marcelBos from '../assets/marcel-in-het-bos.jpeg';
+import marcelWater from '../assets/marcel-bij-het-water.jpeg';
 ---
 
 <Layout
@@ -53,9 +56,17 @@ import CtaSection from '../components/CtaSection.astro';
           </div>
         </div>
 
-        {/* Portrait photo placeholder */}
-        <div class="w-full max-w-[22rem] md:w-[25rem] md:max-w-none flex items-center justify-center overflow-hidden" style="aspect-ratio: 3/4; background-color: var(--color-primary-light); border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;">
-          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Portretfoto Marcel]</span>
+        {/* Portrait photo */}
+        <div class="w-full max-w-[22rem] md:w-[25rem] md:max-w-none overflow-hidden" style="aspect-ratio: 3/4; border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;">
+          <Image
+            src={marcelBos}
+            alt="Marcel Zoeteman wandelend in het bos"
+            widths={[600, 1000, 1600, 2132]}
+            sizes="(max-width: 768px) 22rem, 25rem"
+            class="w-full h-full object-cover"
+            quality={95}
+            loading="eager"
+          />
         </div>
       </div>
 
@@ -121,8 +132,15 @@ import CtaSection from '../components/CtaSection.astro';
     <section class="py-16 md:py-32 px-6" style="background-color: var(--color-surface);">
       <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
         {/* Photo */}
-        <div class="w-full flex items-center justify-center overflow-hidden md:relative md:z-10 md:mb-[-2rem]" style="aspect-ratio: 4/3; background-color: var(--color-primary); border: 10px solid var(--color-surface-elevated); border-radius: 6px;">
-          <span class="text-xs font-medium uppercase tracking-widest" style="color: #FFFFFF;">[Marcel Zoeteman — portretfoto]</span>
+        <div class="w-full overflow-hidden md:relative md:z-10 md:mb-[-2rem]" style="aspect-ratio: 4/3; border: 10px solid var(--color-surface-elevated); border-radius: 6px;">
+          <Image
+            src={marcelWater}
+            alt="Marcel Zoeteman bij het water"
+            widths={[500, 800, 1100]}
+            sizes="(max-width: 768px) 100vw, 58vw"
+            class="w-full h-full object-cover object-[center_42%]"
+            quality={80}
+          />
         </div>
 
         {/* Text */}
