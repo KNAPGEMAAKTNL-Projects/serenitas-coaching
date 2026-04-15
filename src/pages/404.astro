@@ -1,0 +1,78 @@
+---
+/**
+ * 404 — Page not found
+ * Mirrors PageHero visual language (grain + sage gradient).
+ * Monkey Brain thought bubble + helpful navigation links.
+ * DESIGN.md §2 (colors), §3 (typography), §4 (spacing), §5 (buttons + thought bubble), §7 (grain).
+ */
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const helpfulLinks = [
+  { href: '/', label: 'Homepage', desc: 'Terug naar het begin' },
+  { href: '/over-marcel', label: 'Over Marcel', desc: 'Wie is Marcel Zoeteman?' },
+  { href: '/werkwijze', label: 'Werkwijze', desc: 'Hoe coaching eruitziet' },
+  { href: '/contact', label: 'Contact', desc: 'Stuur een bericht' },
+];
+---
+
+<Layout
+  title="Pagina niet gevonden · Serenitas Coaching"
+  description="Deze pagina bestaat niet of is verplaatst."
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content">
+    {/* Hero section — matches PageHero grain + sage gradient pattern */}
+    <section class="grain relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20 px-6" style="background-color: var(--color-background);">
+      <div class="absolute top-0 right-0 w-1/2 h-full pointer-events-none" style="background: radial-gradient(ellipse at 80% 30%, var(--color-primary), transparent 70%); opacity: 0.06;" aria-hidden="true"></div>
+
+      <div class="relative z-10 mx-auto" style="max-width: var(--w-content);">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          404
+        </span>
+        <h1>
+          <span class="block" style="font-size: clamp(2.4414rem, 2rem + 1.5vw, 3.0518rem); letter-spacing: -0.025em; line-height: 1.1; color: var(--color-text);">Deze pagina bestaat niet.</span>
+        </h1>
+
+        {/* Monkey Brain thought bubble — DESIGN.md §5 Thought Bubble style */}
+        <div class="mt-8" style="max-width: 30rem;">
+          <p class="italic" style="padding: 0.875rem 1.25rem; border-left: 3px solid var(--color-primary); border-radius: 0 4px 4px 0; background: rgba(255,255,255,0.5); color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">
+            Heb ik de verkeerde link aangeklikt? Of was het die andere? Wacht, waar was ik ook alweer...
+          </p>
+        </div>
+
+        <p class="mt-8 font-light" style="font-size: 1.25rem; line-height: 1.55; color: var(--color-text-muted); max-width: 38rem;">
+          Soms ben je even de weg kwijt. Laat me je helpen.
+        </p>
+      </div>
+    </section>
+
+    {/* Helpful links section */}
+    <section class="py-12 md:py-20 px-6" style="background-color: var(--color-surface);">
+      <div class="mx-auto" style="max-width: var(--w-content);">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" style="max-width: 40rem;">
+          {helpfulLinks.map(link => (
+            <a
+              href={link.href}
+              class="group block p-5 rounded transition-colors duration-300"
+              style="background-color: var(--color-background); transition-timing-function: var(--ease-project);"
+            >
+              <span class="block font-medium mb-1" style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-primary-dark);">
+                {link.label}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" style="transition-timing-function: var(--ease-project); vertical-align: middle;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+              <span class="block" style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.5;">
+                {link.desc}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
