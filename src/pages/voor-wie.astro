@@ -11,13 +11,13 @@ import CtaSection from '../components/CtaSection.astro';
 ---
 
 <Layout
-  title="Voor Wie · Coaching voor Artsen en Zorgprofessionals · Serenitas"
+  title="Voor Wie · Coaching voor Artsen | Serenitas Coaching"
   description="Coaching voor artsen, specialisten en zorgprofessionals die moe zijn van goed willen doen. Herken je de signalen? Lees of dit bij jou past."
   noindex={true}
 >
   <Header currentPath="/voor-wie" />
 
-  <main>
+  <main id="main-content">
     {/* Section 1: Page Hero */}
     <PageHero
       eyebrow="Voor wie"
@@ -35,7 +35,7 @@ import CtaSection from '../components/CtaSection.astro';
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
           {[
-            { title: 'Je draagt het werk mee naar huis', text: 'De patiënt van vanmiddag laat je niet los. De rapportage schrijf je \'s avonds. De gedachte "had ik dat anders moeten doen?" is je vaste metgezel op de bank.' },
+            { title: 'Je neemt je werk mee naar huis', text: 'De patiënt van vanmiddag laat je niet los. De rapportage schrijf je \'s avonds. De gedachte "had ik dat anders moeten doen?" is je vaste metgezel op de bank.' },
             { title: 'Je functioneert goed, maar voelt steeds minder', text: 'Collega\'s zien iemand die het allemaal aankan. Jij voelt een groeiende leegte. Het enthousiasme is langzaam weggegleden, zonder dat je kunt aanwijzen wanneer.' },
             { title: 'Je grenzen vervagen', text: 'Je zegt ja terwijl je nee bedoelt. Je neemt taken over van collega\'s die het ook druk hebben. Je voelt verantwoordelijkheid voor dingen die niet van jou zijn.' },
             { title: 'Je lichaam geeft signalen', text: 'Slechter slapen. Prikkelbaar zijn. Minder eetlust of juist meer. Hoofdpijn. Het zijn geen diagnoses, het zijn signalen. Je weet het eigenlijk al.' },
@@ -59,7 +59,7 @@ import CtaSection from '../components/CtaSection.astro';
     <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface);">
       <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
         <div>
-          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
             Mijn doelgroep
           </span>
           <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
@@ -101,7 +101,7 @@ import CtaSection from '../components/CtaSection.astro';
     <section class="py-16 md:py-24 px-6" style="background-color: var(--color-background);">
       <div class="mx-auto" style="max-width: var(--w-content);">
         <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
-          De Monkey Brain in actie
+          Je Monkey Brain in actie
         </h2>
         <p class="mb-10 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 55ch;">
           Dit zijn gedachten die je misschien herkent. Niet omdat er iets mis met je is, maar omdat de Monkey Brain van zorgprofessionals dezelfde taal spreekt.
@@ -110,7 +110,7 @@ import CtaSection from '../components/CtaSection.astro';
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {[
             { cat: 'Perfectionisme', thoughts: ['"Als ik het niet perfect doe, gaat er iets mis."', '"Ik had dat eerder moeten zien."'] },
-            { cat: 'Verantwoordelijkheid', thoughts: ['"Ik kan niet ziek melden, dan moet mijn collega het alleen doen."', '"Als ik nee zeg, laat ik het team in de steek."'] },
+            { cat: 'Verantwoordelijkheid', thoughts: ['"Ik kan me niet ziek melden, dan moet mijn collega het alleen doen."', '"Als ik nee zeg, laat ik het team in de steek."'] },
             { cat: 'Controle', thoughts: ['"Ik moet alles checken, anders gaat het fout."', '"Straks merk ik te laat dat er iets aan de hand is."'] },
             { cat: 'Zelfkritiek', thoughts: ['"Een echte arts zou dit aankunnen."', '"Iedereen lijkt het makkelijker te hebben dan ik."'] },
           ].map(group => (
