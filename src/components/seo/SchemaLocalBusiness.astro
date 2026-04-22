@@ -1,0 +1,210 @@
+---
+/**
+ * Schema: ProfessionalService + Person + WebSite (@graph)
+ *
+ * Attribute-rich JSON-LD targeting 20+ populated properties
+ * for 61.7% AI citation rate (Growth Marshal 2026, n=1,006).
+ *
+ * Data sources:
+ *   - CLIENT-DATA.md (business details — many still placeholder)
+ *   - DESIGN.md (brand, slogan, services)
+ *   - CONTENT/sitemap.md (keyword targets, service descriptions)
+ *
+ * TODO — fill when CLIENT-DATA.md is updated:
+ *   - telephone (no phone number confirmed yet)
+ *   - address.streetAddress + address.postalCode (only city known)
+ *   - vatID / identifier (KvK + BTW pending)
+ *   - foundingDate
+ *   - sameAs (Wikidata Q-ID, GBP URL, LinkedIn)
+ *   - aggregateRating (when first reviews exist)
+ *   - geo coordinates (currently city center — update with exact address)
+ */
+
+const siteUrl = (Astro.site?.toString() ?? 'https://serenitas.me/').replace(/\/$/, '');
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+
+    // ── ProfessionalService (Serenitas Coaching) ──────────────
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#business`,
+      "name": "Serenitas Coaching",
+      "alternateName": "Serenitas",
+      "description": "Coaching voor zorgprofessionals die vastlopen in hun hoofd. Marcel Zoeteman, arts en specialist ouderengeneeskunde met 20+ jaar ervaring, helpt artsen en verpleegkundigen hun Monkey Brain temmen voor meer rust, focus en helderheid.",
+      "url": `${siteUrl}/`,
+      "email": "info@serenitas.me",
+      // TODO: add "telephone" when confirmed in CLIENT-DATA.md
+      "slogan": "Rationeel vak. Emotioneel brein.",
+      "image": `${siteUrl}/og-default.jpg`,
+      "logo": `${siteUrl}/favicon.svg`,
+      "founder": { "@id": `${siteUrl}/#person` },
+
+      "address": {
+        "@type": "PostalAddress",
+        // TODO: add "streetAddress" and "postalCode" when confirmed
+        "addressLocality": "Emmen",
+        "addressRegion": "Drenthe",
+        "addressCountry": "NL",
+      },
+
+      "geo": {
+        "@type": "GeoCoordinates",
+        // City center — update with exact coordinates when address known
+        "latitude": 52.7792,
+        "longitude": 6.9003,
+      },
+
+      "areaServed": [
+        { "@type": "City", "name": "Emmen", "sameAs": "https://nl.wikipedia.org/wiki/Emmen_(Drenthe)" },
+        { "@type": "City", "name": "Assen", "sameAs": "https://nl.wikipedia.org/wiki/Assen" },
+        { "@type": "City", "name": "Hoogeveen", "sameAs": "https://nl.wikipedia.org/wiki/Hoogeveen" },
+        { "@type": "City", "name": "Coevorden", "sameAs": "https://nl.wikipedia.org/wiki/Coevorden" },
+        { "@type": "City", "name": "Meppel", "sameAs": "https://nl.wikipedia.org/wiki/Meppel" },
+      ],
+
+      // CLIENT-DATA.md: "Op afspraak" — no fixed hours
+      // TODO: add openingHoursSpecification when GBP hours are configured
+      // Must match GBP + Bing Places exactly
+
+      "priceRange": "$$",
+      "paymentAccepted": "Overboeking",
+      "currenciesAccepted": "EUR",
+
+      // TODO: uncomment when KvK + BTW confirmed in CLIENT-DATA.md
+      // "vatID": "NL...",
+      // "identifier": [
+      //   { "@type": "PropertyValue", "name": "KvK-nummer", "value": "..." },
+      //   { "@type": "PropertyValue", "name": "BTW-nummer", "value": "..." },
+      // ],
+
+      // TODO: uncomment when founding date confirmed
+      // "foundingDate": "2024-...",
+
+      "knowsAbout": [
+        "Coaching voor zorgprofessionals",
+        "Burnout coaching artsen",
+        "Mindfulness coaching",
+        "Monkey Brain Temmer",
+        "Wandelcoaching",
+        "Zenmeditatie",
+        "Coaching specialist ouderengeneeskunde",
+      ],
+
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Coaching",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kennismakingsgesprek",
+              "description": "Vrijblijvend eerste gesprek om te kijken of er een klik is en of coaching bij je past.",
+              "url": `${siteUrl}/contact`,
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Coachingsessie",
+              "description": "Individuele coaching via persoonlijk gesprek of online. Duur: ca. 60 minuten.",
+              "url": `${siteUrl}/werkwijze`,
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Wandelgesprek",
+              "description": "Coachingsessie tijdens een wandeling in de natuur. Duur: ca. 75 minuten.",
+              "url": `${siteUrl}/werkwijze`,
+            },
+          },
+        ],
+      },
+
+      // TODO: uncomment when profiles exist
+      // "sameAs": [
+      //   "https://www.wikidata.org/wiki/Q...",    // Wikidata entity
+      //   "https://maps.google.com/?cid=...",       // Google Business Profile
+      //   "https://www.linkedin.com/in/...",         // LinkedIn
+      // ],
+
+      // TODO: uncomment when first reviews exist (ervaringen page)
+      // "aggregateRating": {
+      //   "@type": "AggregateRating",
+      //   "ratingValue": "...",
+      //   "ratingCount": "...",
+      // },
+
+      "availableLanguage": {
+        "@type": "Language",
+        "name": "Dutch",
+        "alternateName": "nl",
+      },
+    },
+
+    // ── Person (Marcel Zoeteman) ──────────────────────────────
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      "name": "Marcel Zoeteman",
+      "givenName": "Marcel",
+      "familyName": "Zoeteman",
+      "jobTitle": "Coach voor zorgprofessionals",
+      "description": "Arts en specialist ouderengeneeskunde met meer dan 20 jaar ervaring in de ouderenzorg. Na zijn eigen ervaring met burnout coacht hij artsen en zorgprofessionals die vastlopen in hun hoofd.",
+      "url": `${siteUrl}/over-marcel`,
+      "image": `${siteUrl}/og-default.jpg`,
+      "worksFor": { "@id": `${siteUrl}/#business` },
+
+      "hasOccupation": [
+        {
+          "@type": "Occupation",
+          "name": "Specialist ouderengeneeskunde",
+          "occupationalCategory": "29-1229.00",
+          "description": "Arts gespecialiseerd in ouderengeneeskunde met meer dan 20 jaar klinische ervaring.",
+        },
+        {
+          "@type": "Occupation",
+          "name": "Coach",
+          "description": "Coaching voor artsen en zorgprofessionals met de Monkey Brain Temmer methodiek.",
+        },
+      ],
+
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "degree",
+        "name": "Specialist Ouderengeneeskunde",
+      },
+
+      "knowsAbout": [
+        "Ouderengeneeskunde",
+        "Burnout bij zorgprofessionals",
+        "Zenmeditatie",
+        "Monkey Brain concept",
+        "Coaching",
+        "Mindfulness",
+      ],
+
+      // TODO: uncomment when LinkedIn personal URL confirmed
+      // "sameAs": ["https://www.linkedin.com/in/..."],
+    },
+
+    // ── WebSite ───────────────────────────────────────────────
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "name": "Serenitas Coaching",
+      "url": `${siteUrl}/`,
+      "description": "Coaching voor zorgprofessionals die hun Monkey Brain willen temmen voor meer rust, focus en helderheid.",
+      "publisher": { "@id": `${siteUrl}/#business` },
+      "inLanguage": "nl",
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

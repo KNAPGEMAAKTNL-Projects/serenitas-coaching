@@ -26,7 +26,7 @@ const isDark = variant === 'dark';
       placeholder="Je naam"
       required
       autocomplete="name"
-      class="form-input outline-none transition-all duration-300"
+      class="form-input transition-all duration-300"
       data-variant={variant}
     />
     <span class="form-error hidden" style="font-size: 0.7rem; color: var(--color-error);" role="alert"></span>
@@ -44,7 +44,7 @@ const isDark = variant === 'dark';
       placeholder="je@voorbeeld.nl"
       required
       autocomplete="email"
-      class="form-input outline-none transition-all duration-300"
+      class="form-input transition-all duration-300"
       data-variant={variant}
     />
     <span class="form-error hidden" style="font-size: 0.7rem; color: var(--color-error);" role="alert"></span>
@@ -60,7 +60,7 @@ const isDark = variant === 'dark';
       name="bericht"
       placeholder="Wat houdt je bezig?"
       rows="4"
-      class="form-input outline-none transition-all duration-300 resize-y"
+      class="form-input transition-all duration-300 resize-y"
       data-variant={variant}
       style="min-height: 6rem;"
     ></textarea>
@@ -96,7 +96,7 @@ const isDark = variant === 'dark';
   </div>
 
   <!-- Privacy note -->
-  <p style={`font-size: 0.64rem; line-height: 1.5; ${isDark ? 'opacity: 0.6;' : 'color: var(--color-text-muted);'}`}>
+  <p style={`font-size: 0.7rem; line-height: 1.5; ${isDark ? 'opacity: 0.6;' : 'color: var(--color-text-muted);'}`}>
     Je gegevens worden niet gedeeld met derden. Lees onze <a href="/privacy" class="underline underline-offset-2">privacyverklaring</a>.
   </p>
 </form>
@@ -118,6 +118,8 @@ const isDark = variant === 'dark';
   .form-input[data-variant="dark"]:focus {
     border-color: var(--color-primary-light);
     background: rgba(255,255,255,0.12);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(147, 178, 162, 0.3);
   }
   .form-input[data-variant="light"] {
     font-family: var(--font-body);
@@ -135,6 +137,8 @@ const isDark = variant === 'dark';
   }
   .form-input[data-variant="light"]:focus {
     border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(124, 154, 138, 0.2);
   }
   .form-input.invalid {
     border-color: var(--color-error) !important;

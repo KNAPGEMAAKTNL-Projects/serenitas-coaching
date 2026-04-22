@@ -1,0 +1,46 @@
+---
+/**
+ * BreadcrumbList JSON-LD schema.
+ *
+ * Auto-generated from Astro.url.pathname.
+ * Desktop rich results only (January 2025 update).
+ * Skips rendering on homepage (no breadcrumb for root).
+ * Last item omits "item" URL per Google's recommendation.
+ */
+
+const siteUrl = (Astro.site?.toString() ?? 'https://serenitas.me/').replace(/\/$/, '');
+const pathname = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+
+const pageNames: Record<string, string> = {
+  '/over-marcel': 'Over Marcel',
+  '/werkwijze': 'Hoe ik werk',
+  '/voor-wie': 'Voor wie',
+  '/ervaringen': 'Ervaringen',
+  '/contact': 'Contact',
+  '/privacy': 'Privacyverklaring',
+  '/veelgestelde-vragen': 'Veelgestelde vragen',
+};
+
+const isHomepage = pathname === '/' || pathname === '';
+const pageName = pageNames[pathname];
+
+// Only render for inner pages with a known name
+const items = (!isHomepage && pageName) ? [
+  { name: 'Home', url: `${siteUrl}/` },
+  { name: pageName },
+] : null;
+
+const schema = items ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    // Last item: omit "item" URL per Google's BreadcrumbList docs
+    ...('url' in item ? { "item": item.url } : {}),
+  })),
+} : null;
+---
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

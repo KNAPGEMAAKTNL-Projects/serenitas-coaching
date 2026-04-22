@@ -1,0 +1,48 @@
+---
+/**
+ * Service JSON-LD schema.
+ *
+ * Links back to the ProfessionalService entity via provider @id.
+ * Area served mirrors SchemaLocalBusiness.astro (must stay in sync).
+ * No PriceSpecification at launch — DESIGN.md §14: pricing hidden.
+ */
+
+interface Props {
+  name: string;
+  description: string;
+  url?: string;
+}
+
+const { name, description, url } = Astro.props;
+const siteUrl = (Astro.site?.toString() ?? 'https://serenitas.me/').replace(/\/$/, '');
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": name,
+  "description": description,
+  ...(url && { "url": `${siteUrl}${url}` }),
+  "provider": { "@id": `${siteUrl}/#business` },
+  "areaServed": [
+    { "@type": "City", "name": "Emmen", "sameAs": "https://nl.wikipedia.org/wiki/Emmen_(Drenthe)" },
+    { "@type": "City", "name": "Assen", "sameAs": "https://nl.wikipedia.org/wiki/Assen" },
+    { "@type": "City", "name": "Hoogeveen", "sameAs": "https://nl.wikipedia.org/wiki/Hoogeveen" },
+    { "@type": "City", "name": "Coevorden", "sameAs": "https://nl.wikipedia.org/wiki/Coevorden" },
+    { "@type": "City", "name": "Meppel", "sameAs": "https://nl.wikipedia.org/wiki/Meppel" },
+  ],
+
+  // TODO: add when pricing is published (DESIGN.md §14 — currently hidden)
+  // "offers": {
+  //   "@type": "Offer",
+  //   "priceCurrency": "EUR",
+  //   "priceSpecification": {
+  //     "@type": "PriceSpecification",
+  //     "priceCurrency": "EUR",
+  //     "minPrice": "...",
+  //     "maxPrice": "...",
+  //   },
+  // },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

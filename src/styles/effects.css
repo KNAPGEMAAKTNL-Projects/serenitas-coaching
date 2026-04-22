@@ -60,6 +60,9 @@
     width: 100%;
   }
 }
+.nav-link:focus-visible::after {
+  width: 100%;
+}
 
 /* ── Ghost Button Arrow ── */
 /* DESIGN.md §5: arrow translateX(3px) + border-bottom-color on hover */
@@ -84,6 +87,12 @@
   .ghost-link:hover svg {
     transform: translateX(3px);
   }
+}
+.ghost-link:focus-visible {
+  border-bottom-color: var(--color-primary-dark);
+}
+.ghost-link:focus-visible svg {
+  transform: translateX(3px);
 }
 
 .ghost-link svg {
