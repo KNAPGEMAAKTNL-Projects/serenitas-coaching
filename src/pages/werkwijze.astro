@@ -8,6 +8,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaSection from '../components/CtaSection.astro';
+import SchemaService from '../components/seo/SchemaService.astro';
 ---
 
 <Layout
@@ -15,13 +16,23 @@ import CtaSection from '../components/CtaSection.astro';
   description="Je Monkey Brain springt van tak naar tak. In 3 stappen leer je hem herkennen, de oorsprong checken en bewust kiezen. Coaching via gesprek of wandeling."
   noindex={true}
 >
+  <SchemaService
+    name="Coachingsessie"
+    description="Individuele coaching via persoonlijk gesprek of online. Marcel helpt je je Monkey Brain herkennen, de oorsprong checken en bewust kiezen. Duur: ca. 60 minuten."
+    url="/werkwijze"
+  />
+  <SchemaService
+    name="Wandelgesprek"
+    description="Coachingsessie tijdens een wandeling in de natuur. De beweging en buitenlucht maken andere, vaak diepere gesprekken mogelijk. Duur: ca. 75 minuten."
+    url="/werkwijze"
+  />
   <Header currentPath="/werkwijze" />
 
-  <main>
+  <main id="main-content">
     {/* Section 1: Page Hero */}
     <PageHero
       eyebrow="Werkwijze"
-      heading="De Monkey Brain"
+      heading="Je Monkey Brain"
       headingItalic="temmen."
       subtitle="Niet door meer te doen. Niet door harder te werken. Maar door beter te zien wat er al is."
     />
@@ -30,23 +41,26 @@ import CtaSection from '../components/CtaSection.astro';
     <section class="py-16 md:py-28 px-6" style="background-color: var(--color-surface-elevated);">
       <div class="mx-auto grid grid-cols-1 md:grid-cols-[7fr_5fr] gap-10 md:gap-16" style="max-width: var(--w-content);">
         <div>
-          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
             Het concept
           </span>
           <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
             Wat is een Monkey Brain?
           </h2>
           <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
-            Je kent hem wel. Die aap in je hoofd. Het brein dat onrustig van de ene naar de andere gedachte springt, als een aap van tak naar tak. Altijd bezig, nooit stil, op zoek naar de volgende gedachte om aan vast te grijpen.
+            Het begrip <em>monkey mind</em> komt uit de boeddhistische traditie. Beeld het maar in: een aap die rusteloos van tak naar tak springt en nooit stil kan staan. Zo werkt een geest die zich niet kan loslaten. Er is altijd wel een nieuwe gedachte om vast te pakken, iets wat nog aandacht vraagt.
           </p>
           <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
-            Voor zorgprofessionals is die Monkey Brain herkenbaar. Het is de stem die zegt dat je het beter had moeten doen. Die thuis nog bezig is met de patiënt van vanmiddag. Die om drie uur 's nachts inventariseert wat er morgen allemaal moet gebeuren.
+            Feitelijk komt het neer op gedachten die subtiel door een trigger in elkaar ingrijpen en zich vermenigvuldigen. Automatisch worden deze gedachten door het onbewuste brein aan de gang gehouden. Het is een autonoom proces. Je denkt niet, maar het denken neemt het van jou over.
+          </p>
+          <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
+            Voor zorgprofessionals is zo'n Monkey Brain herkenbaar. Het is de stem die zegt dat je het beter had moeten doen. Die thuis nog bezig is met de patiënt van vanmiddag. Die om drie uur 's nachts inventariseert wat er morgen allemaal moet gebeuren.
           </p>
           <p class="mb-4 leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
             Je Monkey Brain is niet je vijand. Hij probeert je te beschermen. Maar als je hem ongecontroleerd laat springen, kost het je energie, slaap, plezier en uiteindelijk je gezondheid.
           </p>
           <p class="leading-relaxed" style="line-height: 1.7; max-width: 55ch;">
-            Mijn aanpak draait niet om het stil krijgen van die aap. Het gaat erom dat je leert opmerken wanneer hij springt, begrijpt waarom hij springt, en bewust kiest of je mee wilt springen.
+            Mijn aanpak draait niet om het stil krijgen van die aap. Het gaat erom dat je leert opmerken wanneer hij springt, begrijpt waarom hij springt, en bewust kiest of je iets met die gedachte doet of niet.
           </p>
         </div>
 
@@ -75,7 +89,7 @@ import CtaSection from '../components/CtaSection.astro';
     {/* Section 3: Drie stappen */}
     <section class="py-16 md:py-32 px-6" style="background-color: var(--color-surface);">
       <div class="mx-auto" style="max-width: var(--w-content);">
-        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
           De aanpak
         </span>
         <h2 class="mb-4" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
@@ -109,7 +123,7 @@ import CtaSection from '../components/CtaSection.astro';
             <div>
               <h3 class="mb-3" style="font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); letter-spacing: -0.01em;">Check de oorsprong</h3>
               <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
-                Elke springende gedachte heeft een bron. Soms is die bron zorgzaamheid: je geeft om je patiënten en wilt het goed doen. Soms is de bron angst: bang om iets te missen, bang voor oordeel, bang om niet te voldoen.
+                Elke springende gedachte is gekoppeld aan een emotie. Soms is die emotie zorgzaamheid: je geeft om je patiënten en wilt het goed doen. Soms is de emotie angst: bang om iets te missen, bang voor oordeel, bang om niet te voldoen.
               </p>
               <p class="mb-4 leading-relaxed" style="line-height: 1.7; color: var(--color-text-muted); max-width: 50ch;">
                 Dat verschil maakt uit. Zorgzaamheid verdient aandacht. Angst verdient begrip, maar geen gehoor. Door de oorsprong te checken leer je onderscheid maken tussen gedachten die je dienen en gedachten die je uitputten.
@@ -159,7 +173,7 @@ import CtaSection from '../components/CtaSection.astro';
     {/* Section 5: Sessies */}
     <section class="py-16 md:py-24 px-6" style="background-color: var(--color-sage-tint);">
       <div class="mx-auto" style="max-width: var(--w-content);">
-        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
           In de praktijk
         </span>
         <h2 class="mb-10" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
