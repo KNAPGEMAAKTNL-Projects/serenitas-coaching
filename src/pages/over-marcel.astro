@@ -17,12 +17,12 @@ import marcelWandelend from '../assets/marcel-wandelend.jpeg';
 
 <Layout
   title="Over Marcel · Arts, Coach en Ervaringsdeskundige · Serenitas"
-  description="Marcel Zoeteman is specialist ouderengeneeskunde met 20+ jaar ervaring. Na zijn eigen burnout werd hij coach voor artsen en zorgprofessionals. Lees zijn verhaal."
+  description="Marcel Zoeteman is specialist ouderengeneeskunde met 20+ jaar ervaring. Na zijn eigen burnout coacht hij artsen en zorgprofessionals. Lees zijn verhaal."
   noindex={true}
 >
   <Header currentPath="/over-marcel" />
 
-  <main>
+  <main id="main-content">
     {/* Section 1: Page Hero */}
     <PageHero
       eyebrow="Over Marcel"
@@ -62,7 +62,7 @@ import marcelWandelend from '../assets/marcel-wandelend.jpeg';
     {/* Section 3: Het verhaal — Timeline */}
     <section class="py-16 md:py-32 px-6" style="background-color: var(--color-surface);">
       <div class="mx-auto" style="max-width: 48rem;">
-        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+        <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
           Mijn pad
         </span>
         <h2 class="mb-12" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
@@ -109,7 +109,7 @@ import marcelWandelend from '../assets/marcel-wandelend.jpeg';
           />
         </div>
         <div class="flex flex-col justify-center">
-          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+          <span class="block mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
             Hoe ik coach
           </span>
           <h2 class="mb-6" style="font-family: var(--font-heading); font-size: clamp(1.5625rem, 1.3rem + 0.8vw, 1.9531rem); letter-spacing: -0.015em;">
@@ -144,7 +144,7 @@ import marcelWandelend from '../assets/marcel-wandelend.jpeg';
           ].map(cred => (
             <div class="py-4" style="border-bottom: 1px solid var(--color-border);">
               <div class="flex flex-col md:flex-row md:items-baseline md:gap-4">
-                <span class="font-medium uppercase mb-1 md:mb-0" style="font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted); min-width: 7rem;">
+                <span class="font-medium uppercase mb-1 md:mb-0" style="font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted); min-width: 7rem;">
                   {cred.label}
                 </span>
                 <span class="font-medium" style="font-family: var(--font-heading); font-size: 1rem;">

@@ -26,7 +26,7 @@ const year = new Date().getFullYear();
 
     {/* Column 2: Pagina's */}
     <div>
-      <span class="block mb-4 font-medium uppercase" style="font-size: 0.64rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.55);">
+      <span class="block mb-4 font-medium uppercase" style="font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.65);">
         Pagina's
       </span>
       <ul class="flex flex-col gap-2" style="font-size: 0.8rem;">
@@ -41,20 +41,20 @@ const year = new Date().getFullYear();
 
     {/* Column 3: Juridisch */}
     <div>
-      <span class="block mb-4 font-medium uppercase" style="font-size: 0.64rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.55);">
+      <span class="block mb-4 font-medium uppercase" style="font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.65);">
         Juridisch
       </span>
       <ul class="flex flex-col gap-2" style="font-size: 0.8rem;">
         <li><a href="/privacy" class="transition-colors duration-300" style="color: rgba(255,255,255,0.6);">Privacyverklaring</a></li>
       </ul>
-      <div class="mt-6 flex flex-col gap-1" style="font-size: 0.64rem; color: rgba(255,255,255,0.55);">
+      <div class="mt-6 flex flex-col gap-1" style="font-size: 0.7rem; color: rgba(255,255,255,0.65);">
         <span>KvK: [KvK-nummer]</span>
       </div>
     </div>
   </div>
 
   {/* Bottom bar */}
-  <div class="mx-auto mt-10 pt-6 flex flex-col md:flex-row md:justify-between gap-2 items-center" style="max-width: var(--w-content); border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.64rem; color: rgba(255,255,255,0.55);">
+  <div class="mx-auto mt-10 pt-6 flex flex-col md:flex-row md:justify-between gap-2 items-center" style="max-width: var(--w-content); border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.7rem; color: rgba(255,255,255,0.65);">
     <span>&copy; {year} Serenitas Coaching &middot; Marcel Zoeteman</span>
     <span>Coaching voor zorgprofessionals</span>
   </div>
@@ -63,5 +63,8 @@ const year = new Date().getFullYear();
 <style>
   footer a:hover {
     color: rgba(255,255,255,0.8) !important;
+  }
+  footer :focus-visible {
+    outline-color: var(--color-primary-light);
   }
 </style>

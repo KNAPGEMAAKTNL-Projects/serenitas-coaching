@@ -1,20 +1,26 @@
 ---
 import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
+import SchemaLocalBusiness from '../components/seo/SchemaLocalBusiness.astro';
+import SchemaBreadcrumb from '../components/seo/SchemaBreadcrumb.astro';
 import '../styles/global.css';
 import '../styles/effects.css';
 
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
   noindex?: boolean;
 }
 
 const {
   title,
   description = 'Coaching voor zorgprofessionals die hun Monkey Brain willen temmen voor meer rust, focus en helderheid.',
+  ogImage = '/og-default.jpg',
   noindex = false,
 } = Astro.props;
+
+const ogImageURL = new URL(ogImage, Astro.site).href;
 
 // Strip trailing index.html for clean canonical URLs
 const pathname = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
@@ -30,6 +36,14 @@ const canonicalURL = new URL(pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL.href} />
 
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nl_NL" />
+
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Fonts: self-hosted at build time via Astro Fonts API -->
@@ -41,8 +55,13 @@ const canonicalURL = new URL(pathname, Astro.site);
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Structured Data: ProfessionalService + Person + WebSite -->
+    <SchemaLocalBusiness />
+    <SchemaBreadcrumb />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Direct naar inhoud</a>
     <slot />
 
     {/* Re-decode Cloudflare email obfuscation after View Transition navigations */}

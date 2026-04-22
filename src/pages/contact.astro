@@ -18,7 +18,7 @@ import ContactForm from '../components/ContactForm.astro';
 >
   <Header currentPath="/contact" />
 
-  <main>
+  <main id="main-content">
     {/* Section 1: Page Hero */}
     <PageHero
       eyebrow="Contact"
@@ -40,7 +40,7 @@ import ContactForm from '../components/ContactForm.astro';
         {/* Info sidebar */}
         <div class="flex flex-col justify-start gap-8 md:pt-14">
           <div>
-            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
               E-mail
             </h3>
             <a href="mailto:info@serenitas.me" class="underline underline-offset-2" style="color: var(--color-primary-dark);">
@@ -49,7 +49,7 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div>
-            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
               Reactietijd
             </h3>
             <p style="color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.6;">
@@ -58,7 +58,7 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div>
-            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
+            <h3 class="mb-3 font-medium uppercase" style="font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);">
               Locatie
             </h3>
             <p style="color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.6;">
@@ -82,7 +82,7 @@ import ContactForm from '../components/ContactForm.astro';
             { num: '3', title: 'Een vrijblijvend gesprek', text: 'We kijken samen of er een klik is en of coaching bij je past. Geen verplichtingen, geen verkooppraatje.' },
           ].map(step => (
             <div class="flex gap-4 items-start">
-              <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full" style="background-color: rgba(124, 154, 138, 0.15); font-family: var(--font-heading); font-size: 0.8rem; color: var(--color-primary-dark); font-weight: 500;">
+              <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 15%, transparent); font-family: var(--font-heading); font-size: 0.8rem; color: var(--color-primary-dark); font-weight: 500;">
                 {step.num}
               </span>
               <div>

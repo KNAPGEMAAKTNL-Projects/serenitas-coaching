@@ -9,6 +9,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaSection from '../components/CtaSection.astro';
+import SchemaFAQ from '../components/seo/SchemaFAQ.astro';
 
 const faqs = [
   {
@@ -55,13 +56,14 @@ const faqs = [
 ---
 
 <Layout
-  title="Veelgestelde Vragen · Coaching voor Zorgprofessionals · Serenitas"
+  title="Veelgestelde Vragen · Coaching voor Artsen | Serenitas"
   description="Antwoorden op veelgestelde vragen over coaching voor artsen en zorgprofessionals. Wat kost het, hoe werkt het, en is het iets voor jou?"
   noindex={true}
 >
+  <SchemaFAQ faqs={faqs.map(f => ({ question: f.q, answer: f.a }))} />
   <Header currentPath="/veelgestelde-vragen" />
 
-  <main>
+  <main id="main-content">
     {/* Section 1: Page Hero */}
     <PageHero
       eyebrow="FAQ"
@@ -81,6 +83,7 @@ const faqs = [
                   <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
                 </svg>
               </summary>
+              {/* set:html is safe here — FAQ data is hardcoded, not from external input */}
               <div class="pb-5 pr-8" style="color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.7;" set:html={faq.a} />
             </details>
           ))}
@@ -123,5 +126,9 @@ const faqs = [
     color: var(--color-primary-dark);
     text-decoration: underline;
     text-underline-offset: 2px;
+  }
+  /* Focus on dark CTA section */
+  section[style*="primary-deep"] :focus-visible {
+    outline-color: var(--color-primary-light);
   }
 </style>

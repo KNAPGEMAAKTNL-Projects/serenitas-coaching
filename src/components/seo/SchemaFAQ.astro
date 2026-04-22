@@ -1,0 +1,33 @@
+---
+/**
+ * FAQPage JSON-LD schema.
+ *
+ * 2025 update: No longer produces Google rich results for regular businesses.
+ * Still valuable for AI search platforms (ChatGPT, Perplexity, Bing Copilot).
+ * Pages with FAQ content are 2.7-3.2x more likely to appear in AI Overviews.
+ *
+ * CRITICAL: Schema content must EXACTLY match visible FAQ text.
+ * Answers may contain HTML (links, lists) per Google's FAQPage docs.
+ */
+
+interface Props {
+  faqs: Array<{ question: string; answer: string }>;
+}
+
+const { faqs } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
